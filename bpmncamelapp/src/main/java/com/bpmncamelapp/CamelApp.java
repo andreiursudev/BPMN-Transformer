@@ -1,8 +1,9 @@
 package com.bpmncamelapp;
 
-import com.bpmncamelapp.flowobject.FlowObject;
 import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.model.RouteDefinition;
+import ro.rodin.adapter.bpmn.model.BusinessProcesses;
+import ro.rodin.adapter.bpmn.model.flowobject.StartEvent;
 
 import java.util.List;
 
@@ -16,13 +17,13 @@ public class CamelApp {
                 List<BusinessProcesses> businessProcesses = app.getBusinessProcesses();
                 for (BusinessProcesses businessProcess : businessProcesses) {
                     RouteDefinition routeDefinition = getRouteDefinition(businessProcess.getStartEvent());
-                    businessProcess.getFlowObject().forEach(flowObject -> flowObject.getCamelAdapter().adapt(routeDefinition));
+                    businessProcess.getFlowObject().forEach(flowObject -> ((CamelAdapter)flowObject.getAdapter()).adapt(routeDefinition));
                 }
 
             }
 
-            private RouteDefinition getRouteDefinition(FlowObject startEvent) {
-                return startEvent.getCamelAdapter().adapt(this);
+            private RouteDefinition getRouteDefinition(StartEvent startEvent) {
+                return ((CamelAdapter)startEvent.getAdapter()).adapt(this);
             }
         };
     }

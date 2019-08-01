@@ -1,11 +1,12 @@
 package com.bpmncamelapp;
 
-import com.bpmncamelapp.connectingobject.ConditionalFlow;
-import com.bpmncamelapp.flowobject.ExclusiveGateway;
+import com.bpmncamelapp.exclusivegateway.ExclusiveGateway;
+import ro.rodin.adapter.bpmn.model.BusinessProcesses;
+import ro.rodin.adapter.bpmn.model.connectingobject.ConditionalFlow;
 import com.bpmncamelapp.testapp.IsHelloWorld;
 import com.bpmncamelapp.testapp.IsNotEmpty;
-import com.bpmncamelapp.testapp.MyStartEvent;
-import com.bpmncamelapp.testapp.ToMock;
+import com.bpmncamelapp.startevent.StartFrom;
+import com.bpmncamelapp.sendto.SendTo;
 import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.component.mock.MockEndpoint;
 import org.apache.camel.test.junit4.CamelTestSupport;
@@ -29,7 +30,7 @@ public class BPMNCamelAppWithNestedExclusiveGatewayTest extends CamelTestSupport
     @Override
     protected RouteBuilder createRouteBuilder() throws Exception {
         List<BusinessProcesses> businessProcesses = new ArrayList<>();
-        businessProcesses.add(new BusinessProcesses(new MyStartEvent(),new ExclusiveGateway(new ConditionalFlow(new IsNotEmpty(),new ExclusiveGateway(new ConditionalFlow(new IsHelloWorld(), new ToMock("mock:out")))))));
+        businessProcesses.add(new BusinessProcesses(new StartFrom("direct:myRoute"),new ExclusiveGateway(new ConditionalFlow(new IsNotEmpty(),new ExclusiveGateway(new ConditionalFlow(new IsHelloWorld(), new SendTo("mock:out")))))));
 
         BPMNCamelApp bpmnCamelApp = new BPMNCamelApp(businessProcesses);
 

@@ -1,11 +1,11 @@
 package com.bpmncamelapp.testapp;
 
 import com.bpmncamelapp.CamelAdapter;
-import com.bpmncamelapp.flowobject.StopEvent;
+import ro.rodin.adapter.bpmn.model.flowobject.StopEvent;
 
 public class MyStopEvent implements StopEvent{
     @Override
-    public CamelAdapter getCamelAdapter() {
+    public CamelAdapter getAdapter() {
         return new MyStopEventAdapter();
     }
 }

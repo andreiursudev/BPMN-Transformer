@@ -1,6 +1,6 @@
 package com.bpmncamelapp.testapp;
 
-import com.bpmncamelapp.expression.Expression;
+import ro.rodin.adapter.bpmn.model.expression.Expression;
 
 
 public class IsHelloWorld extends Expression {
