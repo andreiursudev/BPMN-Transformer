@@ -8,9 +8,9 @@ import ro.rodin.adapter.bpmn.model.flowobject.StartEvent;
 import java.util.List;
 
 
-public class CamelApp {
+public class BPMNCamelRouteBuilder {
 
-    public RouteBuilder buildCamelApp(final BPMNCamelApp app) {
+    public RouteBuilder buildCamelRoutes(final BPMNCamelApp app) {
         return new RouteBuilder() {
             @Override
             public void configure() throws Exception {

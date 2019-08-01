@@ -5,7 +5,7 @@ import org.junit.Test;
 import java.util.ArrayList;
 
 
-public class BPMNCamelAppTest {
+public class BPMNCamelRouteBuilderTest {
 
     @Test(expected = IllegalArgumentException.class)
     public void testBusinessProcessShouldNotBeNull() throws Exception {
