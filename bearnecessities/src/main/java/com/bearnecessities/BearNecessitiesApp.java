@@ -1,10 +1,10 @@
 package com.bearnecessities;
 
-import com.bpmncamelapp.BPMNCamelApp;
-import com.bpmncamelapp.BPMNCamelRouteBuilder;
-import com.bpmncamelapp.adapter.InfoLog;
-import com.bpmncamelapp.sendto.SendTo;
-import ro.rodin.adapter.bpmn.model.BusinessProcesses;
+import com.adapter.bpmn.camel.BPMNCamelApp;
+import com.adapter.bpmn.camel.BPMNCamelRouteBuilder;
+import com.adapter.bpmn.camel.adapter.InfoLog;
+import com.adapter.bpmn.camel.sendto.SendTo;
+import com.adapter.bpmn.model.BusinessProcesses;
 import org.apache.camel.CamelContext;
 import org.apache.camel.impl.DefaultCamelContext;
 

@@ -1,6 +1,6 @@
 package com.bearnecessities;
 
-import com.bpmncamelapp.CamelAdapter;
+import com.adapter.bpmn.camel.CamelAdapter;
 import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.model.RouteDefinition;
 
