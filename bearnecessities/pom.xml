@@ -34,13 +34,13 @@
     </dependency>
 
     <dependency>
-      <groupId>com.bpmncamelapp</groupId>
-      <artifactId>bpmncamelapp</artifactId>
+      <groupId>com.adapter</groupId>
+      <artifactId>adapter-bpmn-camel</artifactId>
       <version>1.0-SNAPSHOT</version>
     </dependency>
 
     <dependency>
-      <groupId>ro.rodin</groupId>
+      <groupId>com.adapter</groupId>
       <artifactId>adapter-bpmn-model</artifactId>
       <version>1.0-SNAPSHOT</version>
     </dependency>
