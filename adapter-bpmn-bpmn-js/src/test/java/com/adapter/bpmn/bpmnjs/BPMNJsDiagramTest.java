@@ -43,11 +43,8 @@ public class BPMNJsDiagramTest {
                 "  </process>\n" +
                 "  <bpmndi:BPMNDiagram id=\"BPMNDiagram\">\n" +
                 "    <bpmndi:BPMNPlane bpmnElement=\"ProjectName\" id=\"BPMNPlane\">\n" +
-                "      <bpmndi:BPMNShape bpmnElement=\"element_0\" id=\"element_0_0\">\n" +
+                "      <bpmndi:BPMNShape bpmnElement=\"element_0\" id=\"element_0_shape\">\n" +
                 "        <dc:Bounds height=\"50.0\" width=\"50.0\" x=\"15.0\" y=\"20.0\"/>\n" +
-                "        <bpmndi:BPMNLabel id=\"element_0_1\">\n" +
-                "          <dc:Bounds height=\"0.0\" width=\"0.0\" x=\"40.0\" y=\"75.0\"/>\n" +
-                "        </bpmndi:BPMNLabel>\n" +
                 "      </bpmndi:BPMNShape>\n" +
                 "    </bpmndi:BPMNPlane>\n" +
                 "  </bpmndi:BPMNDiagram>\n" +

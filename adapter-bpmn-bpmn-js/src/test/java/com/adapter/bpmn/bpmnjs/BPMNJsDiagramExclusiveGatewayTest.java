@@ -37,22 +37,19 @@ public class BPMNJsDiagramExclusiveGatewayTest {
                 "      <outgoing>element_2-element_1_balance</outgoing>\n" +
                 "    </task>\n" +
                 "    <sequenceFlow id=\"element_1-element_2\" name=\"Is Hello World\" sourceRef=\"element_1\" targetRef=\"element_2\"/>\n" +
-                "    <exclusiveGateway id=\"element_1_balance\">\n" +
+                "    <exclusiveGateway id=\"element_1_balance\" name=\"\">\n" +
                 "      <incoming>element_2-element_1_balance</incoming>\n" +
                 "    </exclusiveGateway>\n" +
                 "    <sequenceFlow id=\"element_2-element_1_balance\" name=\"\" sourceRef=\"element_2\" targetRef=\"element_1_balance\"/>\n" +
                 "  </process>\n" +
                 "  <bpmndi:BPMNDiagram id=\"BPMNDiagram\">\n" +
                 "    <bpmndi:BPMNPlane bpmnElement=\"ProjectName\" id=\"BPMNPlane\">\n" +
-                "      <bpmndi:BPMNShape bpmnElement=\"element_0\" id=\"element_0_0\">\n" +
+                "      <bpmndi:BPMNShape bpmnElement=\"element_0\" id=\"element_0_shape\">\n" +
                 "        <dc:Bounds height=\"50.0\" width=\"50.0\" x=\"15.0\" y=\"20.0\"/>\n" +
-                "        <bpmndi:BPMNLabel id=\"element_0_1\">\n" +
-                "          <dc:Bounds height=\"0.0\" width=\"0.0\" x=\"40.0\" y=\"75.0\"/>\n" +
-                "        </bpmndi:BPMNLabel>\n" +
                 "      </bpmndi:BPMNShape>\n" +
-                "      <bpmndi:BPMNShape bpmnElement=\"element_1\" id=\"element_1_0\">\n" +
+                "      <bpmndi:BPMNShape bpmnElement=\"element_1\" id=\"element_1_shape\">\n" +
                 "        <dc:Bounds height=\"50.0\" width=\"50.0\" x=\"215.0\" y=\"20.0\"/>\n" +
-                "        <bpmndi:BPMNLabel id=\"element_1_1\">\n" +
+                "        <bpmndi:BPMNLabel id=\"element_1_label\">\n" +
                 "          <dc:Bounds height=\"0.0\" width=\"0.0\" x=\"240.0\" y=\"0.0\"/>\n" +
                 "        </bpmndi:BPMNLabel>\n" +
                 "      </bpmndi:BPMNShape>\n" +
@@ -60,21 +57,15 @@ public class BPMNJsDiagramExclusiveGatewayTest {
                 "        <di:waypoint x=\"65.0\" y=\"45.0\"/>\n" +
                 "        <di:waypoint x=\"215.0\" y=\"45.0\"/>\n" +
                 "      </bpmndi:BPMNEdge>\n" +
-                "      <bpmndi:BPMNShape bpmnElement=\"element_2\" id=\"element_2_0\">\n" +
+                "      <bpmndi:BPMNShape bpmnElement=\"element_2\" id=\"element_2_shape\">\n" +
                 "        <dc:Bounds height=\"80.0\" width=\"150.0\" x=\"400.0\" y=\"10.0\"/>\n" +
-                "        <bpmndi:BPMNLabel id=\"element_2_1\">\n" +
-                "          <dc:Bounds height=\"0.0\" width=\"0.0\" x=\"0.0\" y=\"0.0\"/>\n" +
-                "        </bpmndi:BPMNLabel>\n" +
                 "      </bpmndi:BPMNShape>\n" +
                 "      <bpmndi:BPMNEdge bpmnElement=\"element_1-element_2\" id=\"edge_element_1-element_2\">\n" +
                 "        <di:waypoint x=\"260.0\" y=\"45.0\"/>\n" +
                 "        <di:waypoint x=\"400.0\" y=\"45.0\"/>\n" +
                 "      </bpmndi:BPMNEdge>\n" +
-                "      <bpmndi:BPMNShape bpmnElement=\"element_1_balance\" id=\"element_1_balance_0\">\n" +
+                "      <bpmndi:BPMNShape bpmnElement=\"element_1_balance\" id=\"element_1_balance_shape\">\n" +
                 "        <dc:Bounds height=\"50.0\" width=\"50.0\" x=\"615.0\" y=\"20.0\"/>\n" +
-                "        <bpmndi:BPMNLabel id=\"element_1_balance_1\">\n" +
-                "          <dc:Bounds height=\"0.0\" width=\"0.0\" x=\"640.0\" y=\"0.0\"/>\n" +
-                "        </bpmndi:BPMNLabel>\n" +
                 "      </bpmndi:BPMNShape>\n" +
                 "      <bpmndi:BPMNEdge bpmnElement=\"element_2-element_1_balance\" id=\"edge_element_2-element_1_balance\">\n" +
                 "        <di:waypoint x=\"550.0\" y=\"45.0\"/>\n" +
@@ -82,7 +73,7 @@ public class BPMNJsDiagramExclusiveGatewayTest {
                 "      </bpmndi:BPMNEdge>\n" +
                 "    </bpmndi:BPMNPlane>\n" +
                 "  </bpmndi:BPMNDiagram>\n" +
-                "</definitions>" +
+                "</definitions>\n" +
                 "\n";
 
         assertEqualsIgnoreLineEndings(xml, expected);
@@ -117,22 +108,19 @@ public class BPMNJsDiagramExclusiveGatewayTest {
                 "      <outgoing>element_3-element_1_balance</outgoing>\n" +
                 "    </task>\n" +
                 "    <sequenceFlow id=\"element_2-element_3\" name=\"\" sourceRef=\"element_2\" targetRef=\"element_3\"/>\n" +
-                "    <exclusiveGateway id=\"element_1_balance\">\n" +
+                "    <exclusiveGateway id=\"element_1_balance\" name=\"\">\n" +
                 "      <incoming>element_3-element_1_balance</incoming>\n" +
                 "    </exclusiveGateway>\n" +
                 "    <sequenceFlow id=\"element_3-element_1_balance\" name=\"\" sourceRef=\"element_3\" targetRef=\"element_1_balance\"/>\n" +
                 "  </process>\n" +
                 "  <bpmndi:BPMNDiagram id=\"BPMNDiagram\">\n" +
                 "    <bpmndi:BPMNPlane bpmnElement=\"ProjectName\" id=\"BPMNPlane\">\n" +
-                "      <bpmndi:BPMNShape bpmnElement=\"element_0\" id=\"element_0_0\">\n" +
+                "      <bpmndi:BPMNShape bpmnElement=\"element_0\" id=\"element_0_shape\">\n" +
                 "        <dc:Bounds height=\"50.0\" width=\"50.0\" x=\"15.0\" y=\"20.0\"/>\n" +
-                "        <bpmndi:BPMNLabel id=\"element_0_1\">\n" +
-                "          <dc:Bounds height=\"0.0\" width=\"0.0\" x=\"40.0\" y=\"75.0\"/>\n" +
-                "        </bpmndi:BPMNLabel>\n" +
                 "      </bpmndi:BPMNShape>\n" +
-                "      <bpmndi:BPMNShape bpmnElement=\"element_1\" id=\"element_1_0\">\n" +
+                "      <bpmndi:BPMNShape bpmnElement=\"element_1\" id=\"element_1_shape\">\n" +
                 "        <dc:Bounds height=\"50.0\" width=\"50.0\" x=\"215.0\" y=\"20.0\"/>\n" +
-                "        <bpmndi:BPMNLabel id=\"element_1_1\">\n" +
+                "        <bpmndi:BPMNLabel id=\"element_1_label\">\n" +
                 "          <dc:Bounds height=\"0.0\" width=\"0.0\" x=\"240.0\" y=\"0.0\"/>\n" +
                 "        </bpmndi:BPMNLabel>\n" +
                 "      </bpmndi:BPMNShape>\n" +
@@ -140,31 +128,22 @@ public class BPMNJsDiagramExclusiveGatewayTest {
                 "        <di:waypoint x=\"65.0\" y=\"45.0\"/>\n" +
                 "        <di:waypoint x=\"215.0\" y=\"45.0\"/>\n" +
                 "      </bpmndi:BPMNEdge>\n" +
-                "      <bpmndi:BPMNShape bpmnElement=\"element_2\" id=\"element_2_0\">\n" +
+                "      <bpmndi:BPMNShape bpmnElement=\"element_2\" id=\"element_2_shape\">\n" +
                 "        <dc:Bounds height=\"80.0\" width=\"150.0\" x=\"400.0\" y=\"10.0\"/>\n" +
-                "        <bpmndi:BPMNLabel id=\"element_2_1\">\n" +
-                "          <dc:Bounds height=\"0.0\" width=\"0.0\" x=\"0.0\" y=\"0.0\"/>\n" +
-                "        </bpmndi:BPMNLabel>\n" +
                 "      </bpmndi:BPMNShape>\n" +
                 "      <bpmndi:BPMNEdge bpmnElement=\"element_1-element_2\" id=\"edge_element_1-element_2\">\n" +
                 "        <di:waypoint x=\"260.0\" y=\"45.0\"/>\n" +
                 "        <di:waypoint x=\"400.0\" y=\"45.0\"/>\n" +
                 "      </bpmndi:BPMNEdge>\n" +
-                "      <bpmndi:BPMNShape bpmnElement=\"element_3\" id=\"element_3_0\">\n" +
+                "      <bpmndi:BPMNShape bpmnElement=\"element_3\" id=\"element_3_shape\">\n" +
                 "        <dc:Bounds height=\"80.0\" width=\"150.0\" x=\"600.0\" y=\"10.0\"/>\n" +
-                "        <bpmndi:BPMNLabel id=\"element_3_1\">\n" +
-                "          <dc:Bounds height=\"0.0\" width=\"0.0\" x=\"0.0\" y=\"0.0\"/>\n" +
-                "        </bpmndi:BPMNLabel>\n" +
                 "      </bpmndi:BPMNShape>\n" +
                 "      <bpmndi:BPMNEdge bpmnElement=\"element_2-element_3\" id=\"edge_element_2-element_3\">\n" +
                 "        <di:waypoint x=\"550.0\" y=\"45.0\"/>\n" +
                 "        <di:waypoint x=\"600.0\" y=\"45.0\"/>\n" +
                 "      </bpmndi:BPMNEdge>\n" +
-                "      <bpmndi:BPMNShape bpmnElement=\"element_1_balance\" id=\"element_1_balance_0\">\n" +
+                "      <bpmndi:BPMNShape bpmnElement=\"element_1_balance\" id=\"element_1_balance_shape\">\n" +
                 "        <dc:Bounds height=\"50.0\" width=\"50.0\" x=\"815.0\" y=\"20.0\"/>\n" +
-                "        <bpmndi:BPMNLabel id=\"element_1_balance_1\">\n" +
-                "          <dc:Bounds height=\"0.0\" width=\"0.0\" x=\"840.0\" y=\"0.0\"/>\n" +
-                "        </bpmndi:BPMNLabel>\n" +
                 "      </bpmndi:BPMNShape>\n" +
                 "      <bpmndi:BPMNEdge bpmnElement=\"element_3-element_1_balance\" id=\"edge_element_3-element_1_balance\">\n" +
                 "        <di:waypoint x=\"750.0\" y=\"45.0\"/>\n" +
@@ -172,7 +151,7 @@ public class BPMNJsDiagramExclusiveGatewayTest {
                 "      </bpmndi:BPMNEdge>\n" +
                 "    </bpmndi:BPMNPlane>\n" +
                 "  </bpmndi:BPMNDiagram>\n" +
-                "</definitions>" +
+                "</definitions>\n" +
                 "\n";
 
         assertEqualsIgnoreLineEndings(xml, expected);
@@ -202,7 +181,7 @@ public class BPMNJsDiagramExclusiveGatewayTest {
                 "      <outgoing>element_2-element_1_balance</outgoing>\n" +
                 "    </task>\n" +
                 "    <sequenceFlow id=\"element_1-element_2\" name=\"Is Hello World\" sourceRef=\"element_1\" targetRef=\"element_2\"/>\n" +
-                "    <exclusiveGateway id=\"element_1_balance\">\n" +
+                "    <exclusiveGateway id=\"element_1_balance\" name=\"\">\n" +
                 "      <incoming>element_2-element_1_balance</incoming>\n" +
                 "      <outgoing>element_1_balance-element_3</outgoing>\n" +
                 "    </exclusiveGateway>\n" +
@@ -214,15 +193,12 @@ public class BPMNJsDiagramExclusiveGatewayTest {
                 "  </process>\n" +
                 "  <bpmndi:BPMNDiagram id=\"BPMNDiagram\">\n" +
                 "    <bpmndi:BPMNPlane bpmnElement=\"ProjectName\" id=\"BPMNPlane\">\n" +
-                "      <bpmndi:BPMNShape bpmnElement=\"element_0\" id=\"element_0_0\">\n" +
+                "      <bpmndi:BPMNShape bpmnElement=\"element_0\" id=\"element_0_shape\">\n" +
                 "        <dc:Bounds height=\"50.0\" width=\"50.0\" x=\"15.0\" y=\"20.0\"/>\n" +
-                "        <bpmndi:BPMNLabel id=\"element_0_1\">\n" +
-                "          <dc:Bounds height=\"0.0\" width=\"0.0\" x=\"40.0\" y=\"75.0\"/>\n" +
-                "        </bpmndi:BPMNLabel>\n" +
                 "      </bpmndi:BPMNShape>\n" +
-                "      <bpmndi:BPMNShape bpmnElement=\"element_1\" id=\"element_1_0\">\n" +
+                "      <bpmndi:BPMNShape bpmnElement=\"element_1\" id=\"element_1_shape\">\n" +
                 "        <dc:Bounds height=\"50.0\" width=\"50.0\" x=\"215.0\" y=\"20.0\"/>\n" +
-                "        <bpmndi:BPMNLabel id=\"element_1_1\">\n" +
+                "        <bpmndi:BPMNLabel id=\"element_1_label\">\n" +
                 "          <dc:Bounds height=\"0.0\" width=\"0.0\" x=\"240.0\" y=\"0.0\"/>\n" +
                 "        </bpmndi:BPMNLabel>\n" +
                 "      </bpmndi:BPMNShape>\n" +
@@ -230,31 +206,22 @@ public class BPMNJsDiagramExclusiveGatewayTest {
                 "        <di:waypoint x=\"65.0\" y=\"45.0\"/>\n" +
                 "        <di:waypoint x=\"215.0\" y=\"45.0\"/>\n" +
                 "      </bpmndi:BPMNEdge>\n" +
-                "      <bpmndi:BPMNShape bpmnElement=\"element_2\" id=\"element_2_0\">\n" +
+                "      <bpmndi:BPMNShape bpmnElement=\"element_2\" id=\"element_2_shape\">\n" +
                 "        <dc:Bounds height=\"80.0\" width=\"150.0\" x=\"400.0\" y=\"10.0\"/>\n" +
-                "        <bpmndi:BPMNLabel id=\"element_2_1\">\n" +
-                "          <dc:Bounds height=\"0.0\" width=\"0.0\" x=\"0.0\" y=\"0.0\"/>\n" +
-                "        </bpmndi:BPMNLabel>\n" +
                 "      </bpmndi:BPMNShape>\n" +
                 "      <bpmndi:BPMNEdge bpmnElement=\"element_1-element_2\" id=\"edge_element_1-element_2\">\n" +
                 "        <di:waypoint x=\"260.0\" y=\"45.0\"/>\n" +
                 "        <di:waypoint x=\"400.0\" y=\"45.0\"/>\n" +
                 "      </bpmndi:BPMNEdge>\n" +
-                "      <bpmndi:BPMNShape bpmnElement=\"element_1_balance\" id=\"element_1_balance_0\">\n" +
+                "      <bpmndi:BPMNShape bpmnElement=\"element_1_balance\" id=\"element_1_balance_shape\">\n" +
                 "        <dc:Bounds height=\"50.0\" width=\"50.0\" x=\"615.0\" y=\"20.0\"/>\n" +
-                "        <bpmndi:BPMNLabel id=\"element_1_balance_1\">\n" +
-                "          <dc:Bounds height=\"0.0\" width=\"0.0\" x=\"640.0\" y=\"0.0\"/>\n" +
-                "        </bpmndi:BPMNLabel>\n" +
                 "      </bpmndi:BPMNShape>\n" +
                 "      <bpmndi:BPMNEdge bpmnElement=\"element_2-element_1_balance\" id=\"edge_element_2-element_1_balance\">\n" +
                 "        <di:waypoint x=\"550.0\" y=\"45.0\"/>\n" +
                 "        <di:waypoint x=\"615.0\" y=\"45.0\"/>\n" +
                 "      </bpmndi:BPMNEdge>\n" +
-                "      <bpmndi:BPMNShape bpmnElement=\"element_3\" id=\"element_3_0\">\n" +
+                "      <bpmndi:BPMNShape bpmnElement=\"element_3\" id=\"element_3_shape\">\n" +
                 "        <dc:Bounds height=\"80.0\" width=\"150.0\" x=\"800.0\" y=\"10.0\"/>\n" +
-                "        <bpmndi:BPMNLabel id=\"element_3_1\">\n" +
-                "          <dc:Bounds height=\"0.0\" width=\"0.0\" x=\"0.0\" y=\"0.0\"/>\n" +
-                "        </bpmndi:BPMNLabel>\n" +
                 "      </bpmndi:BPMNShape>\n" +
                 "      <bpmndi:BPMNEdge bpmnElement=\"element_1_balance-element_3\" id=\"edge_element_1_balance-element_3\">\n" +
                 "        <di:waypoint x=\"660.0\" y=\"45.0\"/>\n" +
@@ -262,7 +229,7 @@ public class BPMNJsDiagramExclusiveGatewayTest {
                 "      </bpmndi:BPMNEdge>\n" +
                 "    </bpmndi:BPMNPlane>\n" +
                 "  </bpmndi:BPMNDiagram>\n" +
-                "</definitions>" +
+                "</definitions>\n" +
                 "\n";
 
         assertEqualsIgnoreLineEndings(xml, expected);

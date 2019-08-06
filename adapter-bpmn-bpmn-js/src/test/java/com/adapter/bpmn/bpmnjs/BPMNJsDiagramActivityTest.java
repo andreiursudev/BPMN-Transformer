@@ -32,17 +32,11 @@ public class BPMNJsDiagramActivityTest {
                 "  </process>\n" +
                 "  <bpmndi:BPMNDiagram id=\"BPMNDiagram\">\n" +
                 "    <bpmndi:BPMNPlane bpmnElement=\"ProjectName\" id=\"BPMNPlane\">\n" +
-                "      <bpmndi:BPMNShape bpmnElement=\"element_0\" id=\"element_0_0\">\n" +
+                "      <bpmndi:BPMNShape bpmnElement=\"element_0\" id=\"element_0_shape\">\n" +
                 "        <dc:Bounds height=\"50.0\" width=\"50.0\" x=\"15.0\" y=\"20.0\"/>\n" +
-                "        <bpmndi:BPMNLabel id=\"element_0_1\">\n" +
-                "          <dc:Bounds height=\"0.0\" width=\"0.0\" x=\"40.0\" y=\"75.0\"/>\n" +
-                "        </bpmndi:BPMNLabel>\n" +
                 "      </bpmndi:BPMNShape>\n" +
-                "      <bpmndi:BPMNShape bpmnElement=\"element_1\" id=\"element_1_0\">\n" +
+                "      <bpmndi:BPMNShape bpmnElement=\"element_1\" id=\"element_1_shape\">\n" +
                 "        <dc:Bounds height=\"80.0\" width=\"150.0\" x=\"200.0\" y=\"10.0\"/>\n" +
-                "        <bpmndi:BPMNLabel id=\"element_1_1\">\n" +
-                "          <dc:Bounds height=\"0.0\" width=\"0.0\" x=\"0.0\" y=\"0.0\"/>\n" +
-                "        </bpmndi:BPMNLabel>\n" +
                 "      </bpmndi:BPMNShape>\n" +
                 "      <bpmndi:BPMNEdge bpmnElement=\"element_0-element_1\" id=\"edge_element_0-element_1\">\n" +
                 "        <di:waypoint x=\"65.0\" y=\"45.0\"/>\n" +
@@ -50,7 +44,7 @@ public class BPMNJsDiagramActivityTest {
                 "      </bpmndi:BPMNEdge>\n" +
                 "    </bpmndi:BPMNPlane>\n" +
                 "  </bpmndi:BPMNDiagram>\n" +
-                "</definitions>" +
+                "</definitions>\n" +
                 "\n";
 
         assertEqualsIgnoreLineEndings(xml, expected);
@@ -82,27 +76,18 @@ public class BPMNJsDiagramActivityTest {
                 "  </process>\n" +
                 "  <bpmndi:BPMNDiagram id=\"BPMNDiagram\">\n" +
                 "    <bpmndi:BPMNPlane bpmnElement=\"ProjectName\" id=\"BPMNPlane\">\n" +
-                "      <bpmndi:BPMNShape bpmnElement=\"element_0\" id=\"element_0_0\">\n" +
+                "      <bpmndi:BPMNShape bpmnElement=\"element_0\" id=\"element_0_shape\">\n" +
                 "        <dc:Bounds height=\"50.0\" width=\"50.0\" x=\"15.0\" y=\"20.0\"/>\n" +
-                "        <bpmndi:BPMNLabel id=\"element_0_1\">\n" +
-                "          <dc:Bounds height=\"0.0\" width=\"0.0\" x=\"40.0\" y=\"75.0\"/>\n" +
-                "        </bpmndi:BPMNLabel>\n" +
                 "      </bpmndi:BPMNShape>\n" +
-                "      <bpmndi:BPMNShape bpmnElement=\"element_1\" id=\"element_1_0\">\n" +
+                "      <bpmndi:BPMNShape bpmnElement=\"element_1\" id=\"element_1_shape\">\n" +
                 "        <dc:Bounds height=\"80.0\" width=\"150.0\" x=\"200.0\" y=\"10.0\"/>\n" +
-                "        <bpmndi:BPMNLabel id=\"element_1_1\">\n" +
-                "          <dc:Bounds height=\"0.0\" width=\"0.0\" x=\"0.0\" y=\"0.0\"/>\n" +
-                "        </bpmndi:BPMNLabel>\n" +
                 "      </bpmndi:BPMNShape>\n" +
                 "      <bpmndi:BPMNEdge bpmnElement=\"element_0-element_1\" id=\"edge_element_0-element_1\">\n" +
                 "        <di:waypoint x=\"65.0\" y=\"45.0\"/>\n" +
                 "        <di:waypoint x=\"200.0\" y=\"45.0\"/>\n" +
                 "      </bpmndi:BPMNEdge>\n" +
-                "      <bpmndi:BPMNShape bpmnElement=\"element_2\" id=\"element_2_0\">\n" +
+                "      <bpmndi:BPMNShape bpmnElement=\"element_2\" id=\"element_2_shape\">\n" +
                 "        <dc:Bounds height=\"80.0\" width=\"150.0\" x=\"400.0\" y=\"10.0\"/>\n" +
-                "        <bpmndi:BPMNLabel id=\"element_2_1\">\n" +
-                "          <dc:Bounds height=\"0.0\" width=\"0.0\" x=\"0.0\" y=\"0.0\"/>\n" +
-                "        </bpmndi:BPMNLabel>\n" +
                 "      </bpmndi:BPMNShape>\n" +
                 "      <bpmndi:BPMNEdge bpmnElement=\"element_1-element_2\" id=\"edge_element_1-element_2\">\n" +
                 "        <di:waypoint x=\"350.0\" y=\"45.0\"/>\n" +
@@ -110,7 +95,7 @@ public class BPMNJsDiagramActivityTest {
                 "      </bpmndi:BPMNEdge>\n" +
                 "    </bpmndi:BPMNPlane>\n" +
                 "  </bpmndi:BPMNDiagram>\n" +
-                "</definitions>" +
+                "</definitions>\n" +
                 "\n";
 
         assertEqualsIgnoreLineEndings(xml, expected);

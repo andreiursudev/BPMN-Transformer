@@ -57,6 +57,7 @@ public class BPMNJsDiagram {
 
     private void adaptFlowObject(Process parentElement, BpmnPlane plane, List<BusinessProcesses> businessProcesses) {
         BPMNDiagramElement currentElement;
+
         for (BusinessProcesses businessProcess : businessProcesses) {
             BPMNJsAdapter adapter = (BPMNJsAdapter) businessProcess.getStartEvent().getAdapter();
             currentElement = adapter.addElement(plane, modelInstance, parentElement, null, null, elementIdGenerator, currentPosition);
