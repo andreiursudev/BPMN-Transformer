@@ -28,7 +28,7 @@ public class BPMNJsDiagramActivityTest {
                 "    <task id=\"element_1\" name=\"This is an activity\">\n" +
                 "      <incoming>element_0-element_1</incoming>\n" +
                 "    </task>\n" +
-                "    <sequenceFlow id=\"element_0-element_1\" sourceRef=\"element_0\" targetRef=\"element_1\"/>\n" +
+                "    <sequenceFlow id=\"element_0-element_1\" name=\"\" sourceRef=\"element_0\" targetRef=\"element_1\"/>\n" +
                 "  </process>\n" +
                 "  <bpmndi:BPMNDiagram id=\"BPMNDiagram\">\n" +
                 "    <bpmndi:BPMNPlane bpmnElement=\"ProjectName\" id=\"BPMNPlane\">\n" +
@@ -74,11 +74,11 @@ public class BPMNJsDiagramActivityTest {
                 "      <incoming>element_0-element_1</incoming>\n" +
                 "      <outgoing>element_1-element_2</outgoing>\n" +
                 "    </task>\n" +
-                "    <sequenceFlow id=\"element_0-element_1\" sourceRef=\"element_0\" targetRef=\"element_1\"/>\n" +
+                "    <sequenceFlow id=\"element_0-element_1\" name=\"\" sourceRef=\"element_0\" targetRef=\"element_1\"/>\n" +
                 "    <task id=\"element_2\" name=\"This is an activity\">\n" +
                 "      <incoming>element_1-element_2</incoming>\n" +
                 "    </task>\n" +
-                "    <sequenceFlow id=\"element_1-element_2\" sourceRef=\"element_1\" targetRef=\"element_2\"/>\n" +
+                "    <sequenceFlow id=\"element_1-element_2\" name=\"\" sourceRef=\"element_1\" targetRef=\"element_2\"/>\n" +
                 "  </process>\n" +
                 "  <bpmndi:BPMNDiagram id=\"BPMNDiagram\">\n" +
                 "    <bpmndi:BPMNPlane bpmnElement=\"ProjectName\" id=\"BPMNPlane\">\n" +
@@ -110,7 +110,7 @@ public class BPMNJsDiagramActivityTest {
                 "      </bpmndi:BPMNEdge>\n" +
                 "    </bpmndi:BPMNPlane>\n" +
                 "  </bpmndi:BPMNDiagram>\n" +
-                "</definitions>\n" +
+                "</definitions>" +
                 "\n";
 
         assertEqualsIgnoreLineEndings(xml, expected);

@@ -60,14 +60,33 @@ public class ExclusiveGatewayBPMNJsAdapter implements BPMNJsAdapter {
             currentPosition.increment();
             for (FlowObject flowObject : conditionalFlow.getFlowObjects()) {
                 currentElement = ((BPMNJsAdapter) flowObject.getAdapter()).addElement(plane, modelInstance, parentElement, currentElement, conditionalFlowName, elementIdGenerator, currentPosition);
-
+                conditionalFlowName = "";
                 currentPosition.increment();
             }
 
         }
 
+        ExclusiveGateway balanceExclusiveGateway = modelInstance.newInstance(ExclusiveGateway.class);
+        balanceExclusiveGateway.setAttributeValue("id", nextId+"_balance", true);
+        parentElement.addChildElement(balanceExclusiveGateway);
 
-        return bpmnDiagramElement;
+        BpmnShape balanceBpmnShape = modelInstance.newInstance(BpmnShape.class);
+        balanceBpmnShape.setBpmnElement(balanceExclusiveGateway);
+        balanceBpmnShape.setId(nextId +"_balance" +  "_0");
+
+        balanceBpmnShape.setBounds(getBounds(modelInstance, currentPosition.getX() + 15, currentPosition.getY() + 20, 50, 50));
+        balanceBpmnShape.addChildElement(getExclusiveGatewayLabel(modelInstance, currentPosition, nextId + "_balance" +"_1"));
+
+        plane.addChildElement(balanceBpmnShape);
+
+        BPMNDiagramElement balanceBpmnDiagramElement = new BPMNDiagramElement(balanceBpmnShape, currentPosition.getX() + 15, 45, currentPosition.getX() + 60, 45);
+
+        BpmnEdge balanceBpmnEdge = AdapterHelper.createSequenceFlow(modelInstance, parentElement, currentElement, balanceBpmnDiagramElement, null);
+
+        plane.addChildElement(balanceBpmnEdge);
+
+
+        return balanceBpmnDiagramElement;
     }
 
     private Bounds getBounds(BpmnModelInstance modelInstance, int currentXPosition, int currentYPosition, int height, int width) {
