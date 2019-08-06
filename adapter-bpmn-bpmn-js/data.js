@@ -4,10 +4,15 @@ var diagram =`<?xml version="1.0" encoding="UTF-8" standalone="no"?>
                   <startEvent id="element_0" name="My Start Event">
                     <outgoing>element_0-element_1</outgoing>
                   </startEvent>
-                  <task id="element_1" name="This is an activity">
+                  <exclusiveGateway id="element_1" name="ok?">
                     <incoming>element_0-element_1</incoming>
+                    <outgoing>element_1-myNextId</outgoing>
+                  </exclusiveGateway>
+                  <sequenceFlow id="element_0-element_1" name="" sourceRef="element_0" targetRef="element_1"/>
+                  <task id="myNextId" name="This is an activity">
+                    <incoming>element_1-myNextId</incoming>
                   </task>
-                  <sequenceFlow id="element_0-element_1" sourceRef="element_0" targetRef="element_1"/>
+                  <sequenceFlow id="element_1-myNextId" name="Is Hello World" sourceRef="element_1" targetRef="myNextId"/>
                 </process>
                 <bpmndi:BPMNDiagram id="BPMNDiagram">
                   <bpmndi:BPMNPlane bpmnElement="ProjectName" id="BPMNPlane">
@@ -18,20 +23,27 @@ var diagram =`<?xml version="1.0" encoding="UTF-8" standalone="no"?>
                       </bpmndi:BPMNLabel>
                     </bpmndi:BPMNShape>
                     <bpmndi:BPMNShape bpmnElement="element_1" id="element_1_0">
-                      <dc:Bounds height="80.0" width="150.0" x="300.0" y="10.0"/>
+                      <dc:Bounds height="50.0" width="50.0" x="215.0" y="20.0"/>
                       <bpmndi:BPMNLabel id="element_1_1">
+                        <dc:Bounds height="0.0" width="0.0" x="240.0" y="0.0"/>
+                      </bpmndi:BPMNLabel>
+                    </bpmndi:BPMNShape>
+                    <bpmndi:BPMNEdge bpmnElement="element_0-element_1" id="edge_element_0-element_1">
+                      <di:waypoint x="65.0" y="45.0"/>
+                      <di:waypoint x="215.0" y="45.0"/>
+                    </bpmndi:BPMNEdge>
+                    <bpmndi:BPMNShape bpmnElement="myNextId" id="myNextId_0">
+                      <dc:Bounds height="80.0" width="150.0" x="400.0" y="10.0"/>
+                      <bpmndi:BPMNLabel id="myNextId_1">
                         <dc:Bounds height="0.0" width="0.0" x="0.0" y="0.0"/>
                       </bpmndi:BPMNLabel>
                     </bpmndi:BPMNShape>
-                    <bpmndi:BPMNEdge bpmnElement="element_0-element_1" id="BPMNEdge_b28d8daf-de7c-42e6-9392-d367bca2862c">
-                      <di:waypoint x="65.0" y="45.0"/>
-                      <di:waypoint x="300.0" y="45.0"/>
+                    <bpmndi:BPMNEdge bpmnElement="element_1-myNextId" id="edge_element_1-myNextId">
+                      <di:waypoint x="260.0" y="45.0"/>
+                      <di:waypoint x="400.0" y="45.0"/>
                     </bpmndi:BPMNEdge>
                   </bpmndi:BPMNPlane>
                 </bpmndi:BPMNDiagram>
               </definitions>
-
-
-
 
 `

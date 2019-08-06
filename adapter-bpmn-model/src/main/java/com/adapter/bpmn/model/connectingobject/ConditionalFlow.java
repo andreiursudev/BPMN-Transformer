@@ -9,18 +9,18 @@ import java.util.List;
 public class ConditionalFlow implements ConnectingObject{
 
     private Expression expression;
-    private List<FlowObject> flowObject;
+    private List<FlowObject> flowObjects;
 
-    public ConditionalFlow(Expression expression, FlowObject ...flowObject) {
+    public ConditionalFlow(Expression expression, FlowObject ... flowObjects) {
         this.expression = expression;
-        this.flowObject = Arrays.asList(flowObject);
+        this.flowObjects = Arrays.asList(flowObjects);
     }
 
     public Expression getExpression(){
         return expression;
     }
 
-    public List<FlowObject> getFlowObject() {
-        return flowObject;
+    public List<FlowObject> getFlowObjects() {
+        return flowObjects;
     }
 }

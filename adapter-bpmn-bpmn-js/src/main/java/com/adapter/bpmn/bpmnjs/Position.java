@@ -21,7 +21,7 @@ public class Position {
     }
 
     public void increment() {
-        x = +300;
+        x += 200;
     }
 }
 

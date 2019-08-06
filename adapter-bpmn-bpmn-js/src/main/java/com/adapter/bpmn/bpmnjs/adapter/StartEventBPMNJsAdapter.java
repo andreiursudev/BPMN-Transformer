@@ -1,7 +1,7 @@
 package com.adapter.bpmn.bpmnjs.adapter;
 
-import com.adapter.bpmn.bpmnjs.BPMNJsAdapter;
 import com.adapter.bpmn.bpmnjs.BPMNDiagramElement;
+import com.adapter.bpmn.bpmnjs.ElementIdGenerator;
 import com.adapter.bpmn.bpmnjs.Position;
 import org.camunda.bpm.model.bpmn.BpmnModelInstance;
 import org.camunda.bpm.model.bpmn.instance.Process;
@@ -18,18 +18,20 @@ public class StartEventBPMNJsAdapter implements BPMNJsAdapter {
         this.name = name;
     }
 
-    public BPMNDiagramElement addElement(BpmnModelInstance modelInstance, Process parentElement, BpmnPlane plane, String elementId, Position currentPosition) {
+    @Override
+    public BPMNDiagramElement addElement(BpmnPlane plane, BpmnModelInstance modelInstance, Process parentElement, BPMNDiagramElement previousBpmnDiagramElement, String conditionalFlowName, ElementIdGenerator elementIdGenerator, Position currentPosition) {
         StartEvent startEvent = modelInstance.newInstance(StartEvent.class);
-        startEvent.setAttributeValue("id", elementId, true);
+        String nextId = elementIdGenerator.getNextId();
+        startEvent.setAttributeValue("id", nextId, true);
         startEvent.setAttributeValue("name", name, false);
         parentElement.addChildElement(startEvent);
 
         BpmnShape bpmnShape = modelInstance.newInstance(BpmnShape.class);
         bpmnShape.setBpmnElement(startEvent);
-        bpmnShape.setId(elementId + "_0");
+        bpmnShape.setId(nextId + "_0");
 
         bpmnShape.setBounds(getBounds(modelInstance, currentPosition.getX() + 15, currentPosition.getY() + 20, 50, 50));
-        bpmnShape.addChildElement(getStartEventBpmnLabel(modelInstance, currentPosition, elementId + "_1"));
+        bpmnShape.addChildElement(getStartEventBpmnLabel(modelInstance, currentPosition, nextId + "_1"));
 
         plane.addChildElement(bpmnShape);
         return new BPMNDiagramElement(bpmnShape, 0, 0, currentPosition.getX() + 65, currentPosition.getY() + 45);
@@ -51,5 +53,6 @@ public class StartEventBPMNJsAdapter implements BPMNJsAdapter {
         bpmnLabel.addChildElement(labelBounds);
         return bpmnLabel;
     }
+
 
 }

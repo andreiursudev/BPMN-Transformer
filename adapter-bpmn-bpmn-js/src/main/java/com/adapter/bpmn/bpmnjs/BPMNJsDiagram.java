@@ -1,7 +1,6 @@
 package com.adapter.bpmn.bpmnjs;
 
-import com.adapter.bpmn.bpmnjs.adapter.ActivityBPMNJsAdapter;
-import com.adapter.bpmn.bpmnjs.adapter.StartEventBPMNJsAdapter;
+import com.adapter.bpmn.bpmnjs.adapter.BPMNJsAdapter;
 import com.adapter.bpmn.model.BusinessProcesses;
 import com.adapter.bpmn.model.flowobject.FlowObject;
 import org.camunda.bpm.model.bpmn.Bpmn;
@@ -14,9 +13,10 @@ import java.util.List;
 
 public class BPMNJsDiagram {
     private List<BusinessProcesses> businessProcesses;
-    private int elementsId = 0;
+
     private Position currentPosition = new Position(0, 0);
     private BpmnModelInstance modelInstance;
+    private ElementIdGenerator elementIdGenerator =new ElementIdGenerator();
 
     public BPMNJsDiagram(List<BusinessProcesses> businessProcesses) {
 
@@ -58,19 +58,18 @@ public class BPMNJsDiagram {
     private void adaptFlowObject(Process parentElement, BpmnPlane plane, List<BusinessProcesses> businessProcesses) {
         BPMNDiagramElement currentElement;
         for (BusinessProcesses businessProcess : businessProcesses) {
-            StartEventBPMNJsAdapter adapter = (StartEventBPMNJsAdapter) businessProcess.getStartEvent().getAdapter();
-            currentElement = adapter.addElement(modelInstance, parentElement, plane, getNextElementId(), currentPosition);
+            BPMNJsAdapter adapter = (BPMNJsAdapter) businessProcess.getStartEvent().getAdapter();
+            currentElement = adapter.addElement(plane, modelInstance, parentElement, null, null, elementIdGenerator, currentPosition);
+            currentPosition.increment();
             for (FlowObject flowObject : businessProcess.getFlowObjects()) {
+                currentElement = ((BPMNJsAdapter) flowObject.getAdapter()).addElement(plane, modelInstance, parentElement, currentElement, null,elementIdGenerator, currentPosition);
                 currentPosition.increment();
-                currentElement = ((ActivityBPMNJsAdapter) flowObject.getAdapter()).addElement(plane, modelInstance, parentElement, currentElement, getNextElementId(), currentPosition);
             }
         }
     }
 
 
-    private String getNextElementId() {
-        return "element_" + elementsId++;
-    }
+
 
 
 }

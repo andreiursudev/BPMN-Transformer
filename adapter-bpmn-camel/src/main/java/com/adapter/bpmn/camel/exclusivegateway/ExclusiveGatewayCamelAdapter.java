@@ -21,7 +21,7 @@ public class ExclusiveGatewayCamelAdapter implements CamelAdapter {
 
             choiceDefinition.when(e -> conditionalFlow.getExpression().getCondition().test(e.getIn().getBody(Object.class)));
 
-            conditionalFlow.getFlowObject().forEach(flowObject -> ((CamelAdapter)flowObject.getAdapter()).adapt(choiceDefinition));
+            conditionalFlow.getFlowObjects().forEach(flowObject -> ((CamelAdapter)flowObject.getAdapter()).adapt(choiceDefinition));
             choiceDefinition.endChoice();
         }
     }
