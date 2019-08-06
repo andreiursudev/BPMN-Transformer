@@ -1,0 +1,127 @@
+<definitions xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" id="definitions_87e586da-dd0a-46cc-96eb-7b9af696820a" targetNamespace="http://camunda.org/examples" xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL">
+  <process id="MyApp">
+    <startEvent id="start0" name="MyStartEvent">
+      <outgoing>start0-myTask1</outgoing>
+    </startEvent>
+    <task id="myTask1" name="myTask2">
+      <incoming>start0-myTask1</incoming>
+      <outgoing>myTask1-myTask2</outgoing>
+    </task>
+    <sequenceFlow id="start0-myTask1" sourceRef="start0" targetRef="myTask1"/>
+    <task id="myTask2" name="myTask3">
+      <incoming>myTask1-myTask2</incoming>
+      <outgoing>myTask2-myTask3</outgoing>
+    </task>
+    <sequenceFlow id="myTask1-myTask2" sourceRef="myTask1" targetRef="myTask2"/>
+    <task id="myTask3" name="myTask4">
+      <incoming>myTask2-myTask3</incoming>
+      <outgoing>myTask3-gateway4</outgoing>
+    </task>
+    <sequenceFlow id="myTask2-myTask3" sourceRef="myTask2" targetRef="myTask3"/>
+    <exclusiveGateway id="gateway4" name="gateway name">
+      <incoming>myTask3-gateway4</incoming>
+      <outgoing>gateway4-myTask5</outgoing>
+      <outgoing>gateway4-myTask7</outgoing>
+    </exclusiveGateway>
+    <sequenceFlow id="myTask3-gateway4" sourceRef="myTask3" targetRef="gateway4"/>
+    <task id="myTask5" name="myTask6">
+      <incoming>gateway4-myTask5</incoming>
+      <outgoing>myTask5-myTask6</outgoing>
+    </task>
+    <sequenceFlow id="gateway4-myTask5" sourceRef="gateway4" targetRef="myTask5"/>
+    <task id="myTask6" name="myTask7">
+      <incoming>myTask5-myTask6</incoming>
+    </task>
+    <sequenceFlow id="myTask5-myTask6" sourceRef="myTask5" targetRef="myTask6"/>
+    <task id="myTask7" name="myTask8">
+      <incoming>gateway4-myTask7</incoming>
+      <outgoing>myTask7-gateway8</outgoing>
+    </task>
+    <sequenceFlow id="gateway4-myTask7" sourceRef="gateway4" targetRef="myTask7"/>
+    <exclusiveGateway id="gateway8" name="gateway name">
+      <incoming>myTask7-gateway8</incoming>
+      <outgoing>gateway8-end9</outgoing>
+    </exclusiveGateway>
+    <sequenceFlow id="myTask7-gateway8" sourceRef="myTask7" targetRef="gateway8"/>
+    <endEvent id="end9" name="MyStopEvent">
+      <incoming>gateway8-end9</incoming>
+    </endEvent>
+    <sequenceFlow id="gateway8-end9" sourceRef="gateway8" targetRef="end9"/>
+  </process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_9d727d35-97bf-4b9e-a6be-d8a023e83590">
+    <bpmndi:BPMNPlane bpmnElement="MyApp" id="BPMNPlane_c910a8bc-a4eb-4fc6-9424-e0b235c7987d">
+      <bpmndi:BPMNShape bpmnElement="start0" id="BPMNShape_f4955351-1e0e-461b-814e-43fff546b985">
+        <dc:Bounds height="50.0" width="50.0" x="15.0" y="15.0"/>
+        <bpmndi:BPMNLabel id="BPMNLabel_89a547c2-bf6b-4190-985f-8b59b49416c8">
+          <dc:Bounds height="50.0" width="50.0" x="15.0" y="65.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="myTask1" id="BPMNShape_543db37d-7738-4ffc-913e-77a41fda81ad">
+        <dc:Bounds height="80.0" width="100.0" x="215.0" y="0.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="start0-myTask1" id="BPMNEdge_a354ba27-1edc-4c97-9334-645df22fa887">
+        <di:waypoint x="115.0" y="40.0"/>
+        <di:waypoint x="215.0" y="40.0"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape bpmnElement="myTask2" id="BPMNShape_ceb2a4b2-c2e9-4190-b310-b0704cb18f09">
+        <dc:Bounds height="80.0" width="100.0" x="415.0" y="0.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="myTask1-myTask2" id="BPMNEdge_cb19ccde-f29b-4328-be36-7e4e75020a41">
+        <di:waypoint x="315.0" y="40.0"/>
+        <di:waypoint x="415.0" y="40.0"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape bpmnElement="myTask3" id="BPMNShape_68ef2ca3-daa2-456e-accc-3c8a669086f1">
+        <dc:Bounds height="80.0" width="100.0" x="615.0" y="0.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="myTask2-myTask3" id="BPMNEdge_bb0de6b6-7e03-49a1-b81c-197fdaa1d20c">
+        <di:waypoint x="515.0" y="40.0"/>
+        <di:waypoint x="615.0" y="40.0"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape bpmnElement="gateway4" id="BPMNShape_f6ac5fce-2bee-4367-bf84-25d652b06239">
+        <dc:Bounds height="50.0" width="50.0" x="815.0" y="15.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="myTask3-gateway4" id="BPMNEdge_52c3511e-6d8f-428a-9a69-256765df8c44">
+        <di:waypoint x="715.0" y="40.0"/>
+        <di:waypoint x="815.0" y="40.0"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape bpmnElement="myTask5" id="BPMNShape_e58f5f59-e53f-4454-b0d3-148450c5ce09">
+        <dc:Bounds height="80.0" width="100.0" x="1015.0" y="0.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="gateway4-myTask5" id="BPMNEdge_88ce01fb-a818-4a95-ae3c-84ef4e1c8879">
+        <di:waypoint x="915.0" y="40.0"/>
+        <di:waypoint x="1015.0" y="40.0"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape bpmnElement="myTask6" id="BPMNShape_3ddbaf8e-47dd-4938-9565-162922975253">
+        <dc:Bounds height="80.0" width="100.0" x="1215.0" y="0.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="myTask5-myTask6" id="BPMNEdge_8b9c1485-43a1-42a8-b6bc-4a176602ae47">
+        <di:waypoint x="1115.0" y="40.0"/>
+        <di:waypoint x="1215.0" y="40.0"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape bpmnElement="myTask7" id="BPMNShape_e9225ccc-f632-4e51-a118-8df14f257e3e">
+        <dc:Bounds height="80.0" width="100.0" x="1415.0" y="0.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="gateway4-myTask7" id="BPMNEdge_a228cd0b-9cf4-4ceb-9da5-24d00c73a27c">
+        <di:waypoint x="1315.0" y="40.0"/>
+        <di:waypoint x="1415.0" y="40.0"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape bpmnElement="gateway8" id="BPMNShape_26a45f5a-f5f9-49a5-a296-5d487770350e">
+        <dc:Bounds height="50.0" width="50.0" x="1615.0" y="15.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="myTask7-gateway8" id="BPMNEdge_84e6e5c3-0423-4dc9-afe5-617ae2b17a0b">
+        <di:waypoint x="1515.0" y="40.0"/>
+        <di:waypoint x="1615.0" y="40.0"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape bpmnElement="end9" id="BPMNShape_5ed9e263-8e7f-47ea-81f0-df0d9595b42c">
+        <dc:Bounds height="50.0" width="50.0" x="1815.0" y="15.0"/>
+        <bpmndi:BPMNLabel id="BPMNLabel_33c47def-bfb9-450f-bdc6-918d68089885">
+          <dc:Bounds height="50.0" width="50.0" x="1815.0" y="65.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="gateway8-end9" id="BPMNEdge_d1015e7a-60b2-4e96-9155-8bf416d423ce">
+        <di:waypoint x="1715.0" y="40.0"/>
+        <di:waypoint x="1815.0" y="40.0"/>
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</definitions>

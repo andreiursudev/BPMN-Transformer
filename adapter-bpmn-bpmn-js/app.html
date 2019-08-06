@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Hello World</title>
+
+    <!--Viewer-->
+    <script src="https://unpkg.com/bpmn-js@3.4.1/dist/bpmn-navigated-viewer.development.js"></script>
+
+
+    <script type="text/javascript" src="data.js"></script>
+
+  </head>
+  <body>
+    <div id="canvas"></div>
+
+    <script>
+      var viewer = new BpmnJS({
+        container: 'body'
+      });
+
+      viewer.importXML(diagram, function(err) {
+
+        if (err) {
+          console.log('error rendering', err);
+        } else {
+          console.log('rendered');
+        }
+      });
+    </script>
+  </body>
+</html>
