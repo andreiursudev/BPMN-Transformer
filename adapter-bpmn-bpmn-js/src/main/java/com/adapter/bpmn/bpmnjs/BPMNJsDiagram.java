@@ -56,14 +56,17 @@ public class BPMNJsDiagram {
     }
 
     private void adaptFlowObject(Process parentElement, BpmnPlane plane, List<BusinessProcesses> businessProcesses) {
-        BPMNDiagramElement currentElement;
+        BPMNDiagramElement currentElement = null;
+
+        BPMNDiagram bpmnDiagram = new BPMNDiagram(modelInstance, plane, parentElement, currentElement);
 
         for (BusinessProcesses businessProcess : businessProcesses) {
             BPMNJsAdapter adapter = (BPMNJsAdapter) businessProcess.getStartEvent().getAdapter();
-            currentElement = adapter.addElement(plane, modelInstance, parentElement, null, null, elementIdGenerator, currentPosition);
+            bpmnDiagram.setCurrentElement(adapter.addElement(bpmnDiagram, null, elementIdGenerator, currentPosition));
             currentPosition.increment();
             for (FlowObject flowObject : businessProcess.getFlowObjects()) {
-                currentElement = ((BPMNJsAdapter) flowObject.getAdapter()).addElement(plane, modelInstance, parentElement, currentElement, null,elementIdGenerator, currentPosition);
+                BPMNJsAdapter flowObjectAdapter = (BPMNJsAdapter) flowObject.getAdapter();
+                bpmnDiagram.setCurrentElement(flowObjectAdapter.addElement(bpmnDiagram, null,elementIdGenerator, currentPosition));
                 currentPosition.increment();
             }
         }
