@@ -63,11 +63,11 @@ public class BPMNJsDiagram {
         for (BusinessProcesses businessProcess : businessProcesses) {
             BPMNJsAdapter adapter = (BPMNJsAdapter) businessProcess.getStartEvent().getAdapter();
             bpmnDiagram.setCurrentElement(adapter.addElement(bpmnDiagram, null, elementIdGenerator, currentPosition));
-            currentPosition.increment();
+            currentPosition.incrementX();
             for (FlowObject flowObject : businessProcess.getFlowObjects()) {
                 BPMNJsAdapter flowObjectAdapter = (BPMNJsAdapter) flowObject.getAdapter();
                 bpmnDiagram.setCurrentElement(flowObjectAdapter.addElement(bpmnDiagram, null,elementIdGenerator, currentPosition));
-                currentPosition.increment();
+                currentPosition.incrementX();
             }
         }
     }

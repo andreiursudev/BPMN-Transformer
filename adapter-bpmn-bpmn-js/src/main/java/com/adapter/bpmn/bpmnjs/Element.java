@@ -12,6 +12,7 @@ public class Element {
     private int labelYPosition;
     private Position leftFlowPoint;
     private Position rightFlowPoint;
+    private Position downFlowPoint;
 
     public Element(String id, String name, int shapeBoundXPosition, int shapeBoundYPosition, int shapeBoundHeight, int shapeBoundWidth) {
 
@@ -38,6 +39,11 @@ public class Element {
         this(id,name,shapeBoundXPosition,shapeBoundYPosition,shapeBoundHeight,shapeBoundWidth,null, leftFlowPoint, rightFlowPoint);
         this.labelXPosition = labelXPosition;
         this.labelYPosition = labelYPosition;
+    }
+
+    public Element(String id, String name, int shapeBoundXPosition, int shapeBoundYPosition, int shapeBoundHeight, int shapeBoundWidth, int labelXPosition, int labelYPosition, Position leftFlowPoint, Position rightFlowPoint, Position downFlowPoint) {
+        this(id,name,shapeBoundXPosition,shapeBoundYPosition,shapeBoundHeight,shapeBoundWidth,labelXPosition, labelYPosition, leftFlowPoint, rightFlowPoint);
+        this.downFlowPoint = downFlowPoint;
     }
 
     public String getId() {
@@ -82,5 +88,9 @@ public class Element {
 
     public Position getRightFlowPoint() {
         return rightFlowPoint;
+    }
+
+    public Position getDownFlowPoint() {
+        return downFlowPoint;
     }
 }

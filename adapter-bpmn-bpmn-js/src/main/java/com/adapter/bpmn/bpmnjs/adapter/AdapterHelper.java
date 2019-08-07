@@ -17,12 +17,12 @@ public class AdapterHelper {
 
     static <T extends BpmnModelElementInstance> BPMNDiagramElement createElementWithSequenceFlow(Class<T> type, BPMNDiagram bpmnDiagram, Element element) {
         FlowNode flowNode = (FlowNode) createElement(type, bpmnDiagram, element);
-        return getBpmnDiagramElement(bpmnDiagram, element, flowNode);
+        return getBpmnDiagramElement(bpmnDiagram, element, flowNode, bpmnDiagram.getPlane());
     }
 
     static <T extends BpmnModelElementInstance> BPMNDiagramElement createElementWithCustomLabelAndSequenceFlow(Class<T> type, BPMNDiagram bpmnDiagram, Element element) {
         FlowNode flowNode = (FlowNode) createElementWitCustomhLabel(type, bpmnDiagram, element);
-        return getBpmnDiagramElement(bpmnDiagram, element, flowNode);
+        return getBpmnDiagramElement(bpmnDiagram, element, flowNode, bpmnDiagram.getPlane());
     }
 
     static <T extends BpmnModelElementInstance> T createElementWitCustomhLabel(Class<T> type, BPMNDiagram bpmnDiagram, Element element) {
@@ -57,17 +57,17 @@ public class AdapterHelper {
                 null);
     }
 
-    private static BPMNDiagramElement getBpmnDiagramElement(BPMNDiagram bpmnDiagram, Element element, FlowNode flowNode) {
-        BPMNDiagramElement bpmnDiagramElement = new BPMNDiagramElement(flowNode, element.getLeftFlowPoint().getX(), element.getLeftFlowPoint().getY(), element.getRightFlowPoint().getX(), element.getRightFlowPoint().getY());
+    private static BPMNDiagramElement getBpmnDiagramElement(BPMNDiagram bpmnDiagram, Element element, FlowNode flowNode, BpmnPlane plane) {
+        BPMNDiagramElement bpmnDiagramElement = new BPMNDiagramElement(flowNode, element.getLeftFlowPoint(), element.getRightFlowPoint(), element.getDownFlowPoint());
 
-        BpmnEdge bpmnEdge = createSequenceFlow(bpmnDiagram.getModelInstance(), bpmnDiagram.getParentElement(), bpmnDiagram.getCurrentElement(), bpmnDiagramElement, element.getConditionalFlowName());
+        BpmnEdge bpmnEdge = createSequenceFlow(bpmnDiagram.getModelInstance(), bpmnDiagram.getParentElement(), bpmnDiagram.getCurrentElement(), bpmnDiagramElement, element.getConditionalFlowName(), plane);
 
-        bpmnDiagram.getPlane().addChildElement(bpmnEdge);
+
 
         return bpmnDiagramElement;
     }
 
-    private static BpmnEdge createSequenceFlow(BpmnModelInstance modelInstance, Process process, BPMNDiagramElement from, BPMNDiagramElement to, String conditionalFlowName) {
+    static BpmnEdge createSequenceFlow(BpmnModelInstance modelInstance, Process process, BPMNDiagramElement from, BPMNDiagramElement to, String conditionalFlowName, BpmnPlane plane) {
         FlowNode fromFlowNode = from.getFlowNode();
         FlowNode toFlowNode = to.getFlowNode();
         String identifier = fromFlowNode.getId() + "-" + toFlowNode.getId();
@@ -84,16 +84,49 @@ public class AdapterHelper {
         bpmnEdge.setId("edge_" + identifier);
         bpmnEdge.setBpmnElement(sequenceFlow);
 
-        Waypoint wp1 = modelInstance.newInstance(Waypoint.class);
-        wp1.setX(from.getxRightFlowPoint());
-        wp1.setY(from.getyRightFlowPoint());
-        bpmnEdge.addChildElement(wp1);
+        if(from.getRightFlowPoint().getY() < to.getLeftFlowPoint().getY()){
+            Waypoint wp1 = modelInstance.newInstance(Waypoint.class);
+            wp1.setX(from.getDownFlowPoint().getX());
+            wp1.setY(from.getDownFlowPoint().getY());
+            bpmnEdge.addChildElement(wp1);
 
-        Waypoint wp2 = modelInstance.newInstance(Waypoint.class);
-        wp2.setX(to.getxLeftFlowPoint());
-        wp2.setY(to.getyLeftFlowPoint());
-        bpmnEdge.addChildElement(wp2);
+            Waypoint wp2 = modelInstance.newInstance(Waypoint.class);
+            wp2.setX(from.getDownFlowPoint().getX());
+            wp2.setY(to.getLeftFlowPoint().getY());
+            bpmnEdge.addChildElement(wp2);
 
+            Waypoint wp3 = modelInstance.newInstance(Waypoint.class);
+            wp3.setX(to.getLeftFlowPoint().getX());
+            wp3.setY(to.getLeftFlowPoint().getY());
+            bpmnEdge.addChildElement(wp3);
+        } else if(from.getRightFlowPoint().getY() > to.getLeftFlowPoint().getY()){
+            Waypoint wp1 = modelInstance.newInstance(Waypoint.class);
+            wp1.setX(from.getRightFlowPoint().getX());
+            wp1.setY(from.getRightFlowPoint().getY());
+            bpmnEdge.addChildElement(wp1);
+
+            Waypoint wp2 = modelInstance.newInstance(Waypoint.class);
+            wp2.setX(to.getDownFlowPoint().getX());
+            wp2.setY(from.getRightFlowPoint().getY());
+            bpmnEdge.addChildElement(wp2);
+
+            Waypoint wp3 = modelInstance.newInstance(Waypoint.class);
+            wp3.setX(to.getDownFlowPoint().getX());
+            wp3.setY(to.getDownFlowPoint().getY());
+            bpmnEdge.addChildElement(wp3);
+        } else{
+
+            Waypoint wp1 = modelInstance.newInstance(Waypoint.class);
+            wp1.setX(from.getRightFlowPoint().getX());
+            wp1.setY(from.getRightFlowPoint().getY());
+            bpmnEdge.addChildElement(wp1);
+
+            Waypoint wp2 = modelInstance.newInstance(Waypoint.class);
+            wp2.setX(to.getLeftFlowPoint().getX());
+            wp2.setY(to.getLeftFlowPoint().getY());
+            bpmnEdge.addChildElement(wp2);
+        }
+        plane.addChildElement(bpmnEdge);
 
         return bpmnEdge;
     }

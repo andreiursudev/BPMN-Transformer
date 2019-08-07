@@ -20,8 +20,13 @@ public class Position {
         return y;
     }
 
-    public void increment() {
+    public void incrementX() {
         x += 200;
+    }
+
+    public void incrementY() {
+        y+= 100;
+
     }
 }
 
