@@ -21,8 +21,8 @@ public class ActivityBPMNJsAdapter implements BPMNJsAdapter {
         int shapeBoundHeight = 80;
         int shapeBoundWidth = 150;
 
-        Position leftFlowPoint = new Position(currentPosition.getX(), 45);
-        Position rightFlowPoint = new Position(currentPosition.getX() + 150, 45);
+        Position leftFlowPoint = new Position(currentPosition.getX(), currentPosition.getY() + 45);
+        Position rightFlowPoint = new Position(currentPosition.getX() + 150, currentPosition.getY() + 45);
 
         Element element = new Element(nextId, name, shapeBoundXPosition, shapeBoundYPosition, shapeBoundHeight, shapeBoundWidth, conditionalFlowName, leftFlowPoint, rightFlowPoint);
 

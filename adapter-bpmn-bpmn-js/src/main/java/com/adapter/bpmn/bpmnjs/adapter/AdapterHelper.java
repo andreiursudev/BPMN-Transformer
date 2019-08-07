@@ -20,12 +20,12 @@ public class AdapterHelper {
         return getBpmnDiagramElement(bpmnDiagram, element, flowNode);
     }
 
-    static <T extends BpmnModelElementInstance> BPMNDiagramElement createElementWithLabelAndSequenceFlow(Class<T> type, BPMNDiagram bpmnDiagram, Element element) {
-        FlowNode flowNode = (FlowNode) createElementWithLabel(type, bpmnDiagram, element);
+    static <T extends BpmnModelElementInstance> BPMNDiagramElement createElementWithCustomLabelAndSequenceFlow(Class<T> type, BPMNDiagram bpmnDiagram, Element element) {
+        FlowNode flowNode = (FlowNode) createElementWitCustomhLabel(type, bpmnDiagram, element);
         return getBpmnDiagramElement(bpmnDiagram, element, flowNode);
     }
 
-    static <T extends BpmnModelElementInstance> T createElementWithLabel(Class<T> type, BPMNDiagram bpmnDiagram, Element element) {
+    static <T extends BpmnModelElementInstance> T createElementWitCustomhLabel(Class<T> type, BPMNDiagram bpmnDiagram, Element element) {
         BpmnModelInstance modelInstance = bpmnDiagram.getModelInstance();
         String id = element.getId();
         BpmnLabel label = getLabel(modelInstance, id + "_label", element.getLabelXPosition(), element.getLabelYPosition());
