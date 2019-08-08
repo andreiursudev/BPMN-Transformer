@@ -16,7 +16,7 @@ public class BPMNJsDiagram {
 
     private Position currentPosition = new Position(0, 0);
     private BpmnModelInstance modelInstance;
-    private ElementIdGenerator elementIdGenerator =new ElementIdGenerator();
+    private ElementIdGenerator elementIdGenerator = new ElementIdGenerator();
 
     public BPMNJsDiagram(List<BusinessProcesses> businessProcesses) {
 
@@ -63,17 +63,12 @@ public class BPMNJsDiagram {
         for (BusinessProcesses businessProcess : businessProcesses) {
             BPMNJsAdapter adapter = (BPMNJsAdapter) businessProcess.getStartEvent().getAdapter();
             bpmnDiagram.setCurrentElement(adapter.addElement(bpmnDiagram, null, elementIdGenerator, currentPosition));
-            currentPosition.incrementX();
             for (FlowObject flowObject : businessProcess.getFlowObjects()) {
                 BPMNJsAdapter flowObjectAdapter = (BPMNJsAdapter) flowObject.getAdapter();
-                bpmnDiagram.setCurrentElement(flowObjectAdapter.addElement(bpmnDiagram, null,elementIdGenerator, currentPosition));
-                currentPosition.incrementX();
+                bpmnDiagram.setCurrentElement(flowObjectAdapter.addElement(bpmnDiagram, null, elementIdGenerator, currentPosition));
             }
         }
     }
-
-
-
 
 
 }

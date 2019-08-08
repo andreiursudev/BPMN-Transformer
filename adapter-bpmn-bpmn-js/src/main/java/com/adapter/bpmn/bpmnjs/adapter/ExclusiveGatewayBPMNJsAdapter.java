@@ -37,13 +37,13 @@ public class ExclusiveGatewayBPMNJsAdapter implements BPMNJsAdapter {
         int labelYPosition = currentPosition.getY();
 
         Element exclusiveGateway = new Element(nextId, name, shapeBoundXPosition, shapeBoundYPosition, shapeBoundHeight, shapeBoundWidth, labelXPosition, labelYPosition,
-                new Position(currentPosition.getX() + 15, currentPosition.getY()+45),
-                new Position(currentPosition.getX() + 60, currentPosition.getY()+ 45),
-                new Position(currentPosition.getX() + 40,currentPosition.getY()+ 70));
+                new Position(currentPosition.getX() + 15, currentPosition.getY() + 45),
+                new Position(currentPosition.getX() + 60, currentPosition.getY() + 45),
+                new Position(currentPosition.getX() + 40, currentPosition.getY() + 70));
 
         BPMNDiagramElement exclusiveGatewayDiagram = createElementWithCustomLabelAndSequenceFlow(ExclusiveGateway.class, bpmnDiagram, exclusiveGateway);
         bpmnDiagram.setCurrentElement(exclusiveGatewayDiagram);
-        Position exclusiveGatewayPosition = new Position(currentPosition.getX(),currentPosition.getY());
+        Position exclusiveGatewayPosition = new Position(currentPosition.getX(), currentPosition.getY());
         Position conditionalFlowPosition = new Position(currentPosition.getX(), currentPosition.getY());
         List<BPMNDiagramElement> conditionalFlowsLastElement = new ArrayList<>();
         for (ConditionalFlow conditionalFlow : conditionalFlows) {
@@ -53,10 +53,9 @@ public class ExclusiveGatewayBPMNJsAdapter implements BPMNJsAdapter {
                 BPMNDiagramElement currentElement = ((BPMNJsAdapter) flowObject.getAdapter()).addElement(bpmnDiagram, conditionalFlowName, elementIdGenerator, conditionalFlowPosition);
                 bpmnDiagram.setCurrentElement(currentElement);
                 conditionalFlowName = "";
-                conditionalFlowPosition.incrementX();
             }
-                conditionalFlowsLastElement.add(bpmnDiagram.getCurrentElement());
-            conditionalFlowPosition = new Position(exclusiveGatewayPosition.getX(),exclusiveGatewayPosition.getY());
+            conditionalFlowsLastElement.add(bpmnDiagram.getCurrentElement());
+            conditionalFlowPosition = new Position(exclusiveGatewayPosition.getX(), exclusiveGatewayPosition.getY());
             conditionalFlowPosition.incrementY();
             bpmnDiagram.setCurrentElement(exclusiveGatewayDiagram);
         }
@@ -64,30 +63,30 @@ public class ExclusiveGatewayBPMNJsAdapter implements BPMNJsAdapter {
         conditionalFlows.get(0).getFlowObjects().forEach((e) -> currentPosition.incrementX());
 
 
-        if (conditionalFlowsLastElement.stream().filter((element) ->!(element.getFlowNode() instanceof EndEvent)).count() > 0) {
+        if (conditionalFlowsLastElement.stream().filter((element) -> !(element.getFlowNode() instanceof EndEvent)).count() > 0) {
             BPMNDiagramElement conditionalFlowLastElement = conditionalFlowsLastElement.get(0);
-                bpmnDiagram.setCurrentElement(conditionalFlowLastElement);
-                String balanceId = nextId + "_balance";
+            bpmnDiagram.setCurrentElement(conditionalFlowLastElement);
+            String balanceId = nextId + "_balance";
             currentPosition.incrementX();
 
-                shapeBoundXPosition = currentPosition.getX() + 15;
-                shapeBoundYPosition = currentPosition.getY() + 20;
+            shapeBoundXPosition = currentPosition.getX() + 15;
+            shapeBoundYPosition = currentPosition.getY() + 20;
 
-                Element balanceExclusiveGateway = new Element(balanceId, "", shapeBoundXPosition, shapeBoundYPosition, shapeBoundHeight, shapeBoundWidth, 0,0,
-                        new Position(currentPosition.getX() + 15, 45),
-                        new Position(currentPosition.getX() + 60, 45),
-                        new Position(currentPosition.getX() + 40,currentPosition.getY()+ 70));
+            Element balanceExclusiveGateway = new Element(balanceId, "", shapeBoundXPosition, shapeBoundYPosition, shapeBoundHeight, shapeBoundWidth, 0, 0,
+                    new Position(currentPosition.getX() + 15, 45),
+                    new Position(currentPosition.getX() + 60, 45),
+                    new Position(currentPosition.getX() + 40, currentPosition.getY() + 70));
 
             BPMNDiagramElement balanceExclusiveGatewayElement = createElementWithSequenceFlow(ExclusiveGateway.class, bpmnDiagram, balanceExclusiveGateway);
             bpmnDiagram.setCurrentElement(balanceExclusiveGatewayElement);
 
-            conditionalFlowsLastElement.stream().skip(1).forEach((element) ->{
-                createSequenceFlow(bpmnDiagram.getModelInstance(),bpmnDiagram.getParentElement(),element,balanceExclusiveGatewayElement,"", bpmnDiagram.getPlane());
+            conditionalFlowsLastElement.stream().skip(1).forEach((element) -> {
+                createSequenceFlow(bpmnDiagram.getModelInstance(), bpmnDiagram.getParentElement(), element, balanceExclusiveGatewayElement, "", bpmnDiagram.getPlane());
             });
         }
+        currentPosition.incrementX();
         return bpmnDiagram.getCurrentElement();
     }
-
 
 
 }

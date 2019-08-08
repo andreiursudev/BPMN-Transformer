@@ -26,7 +26,11 @@ public class ActivityBPMNJsAdapter implements BPMNJsAdapter {
 
         Element element = new Element(nextId, name, shapeBoundXPosition, shapeBoundYPosition, shapeBoundHeight, shapeBoundWidth, conditionalFlowName, leftFlowPoint, rightFlowPoint);
 
-        return createElementWithSequenceFlow(Task.class, bpmnDiagram, element);
+        BPMNDiagramElement elementWithSequenceFlow = createElementWithSequenceFlow(Task.class, bpmnDiagram, element);
+
+        currentPosition.incrementX();
+
+        return elementWithSequenceFlow;
     }
 
 

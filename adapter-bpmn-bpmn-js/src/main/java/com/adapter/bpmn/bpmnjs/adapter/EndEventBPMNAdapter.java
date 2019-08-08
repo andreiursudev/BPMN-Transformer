@@ -25,6 +25,9 @@ public class EndEventBPMNAdapter implements BPMNJsAdapter{
 
         Element element = new Element(nextId, name, shapeBoundXPosition, shapeBoundYPosition, shapeBoundHeight, shapeBoundWidth, conditionalFlowName, leftFlowPoint, leftFlowPoint);
 
-        return createElementWithSequenceFlow(EndEvent.class, bpmnDiagram, element);
+        BPMNDiagramElement elementWithSequenceFlow = createElementWithSequenceFlow(EndEvent.class, bpmnDiagram, element);
+
+        currentPosition.incrementX();
+        return elementWithSequenceFlow;
     }
 }

@@ -26,7 +26,11 @@ public class StartEventBPMNJsAdapter implements BPMNJsAdapter {
 
         FlowNode flowNode = createElement(StartEvent.class, bpmnDiagram, element);
 
-        return new BPMNDiagramElement(flowNode, currentPosition , new Position(currentPosition.getX() + 65, currentPosition.getY() + 45), null);
+        BPMNDiagramElement bpmnDiagramElement = new BPMNDiagramElement(flowNode, currentPosition, new Position(currentPosition.getX() + 65, currentPosition.getY() + 45), null);
+
+        currentPosition.incrementX();
+
+        return bpmnDiagramElement;
     }
 
 
