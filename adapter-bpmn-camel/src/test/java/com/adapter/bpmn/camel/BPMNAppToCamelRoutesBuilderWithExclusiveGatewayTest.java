@@ -1,10 +1,10 @@
 package com.adapter.bpmn.camel;
 
 import com.adapter.bpmn.camel.exclusivegateway.ExclusiveGatewayCamelAdapterFactory;
-import com.adapter.bpmn.camel.activity.sendto.SendTo;
+import com.adapter.bpmn.model.flowobject.activity.SendTo;
 import com.adapter.bpmn.camel.activity.sendto.SendToCamelAdapterFactory;
-import com.adapter.bpmn.camel.startevent.StartFrom;
-import com.adapter.bpmn.camel.exclusivegateway.ExclusiveGateway;
+import com.adapter.bpmn.model.flowobject.exclusivegateway.ExclusiveGateway;
+import com.adapter.bpmn.model.flowobject.startevent.StartFrom;
 import com.adapter.bpmn.camel.startevent.StartFromCamelAdapterFactory;
 import com.adapter.bpmn.model.BusinessProcesses;
 import com.adapter.bpmn.model.connectingobject.ConditionalFlow;
@@ -39,12 +39,9 @@ public class BPMNAppToCamelRoutesBuilderWithExclusiveGatewayTest extends CamelTe
 
         BPMNApp bpmnApp = new BPMNApp(businessProcesses);
 
-        Map<Class<? extends FlowObject>, CamelAdapterFactory> language = new HashMap<>();
-        language.put(StartFrom.class, new StartFromCamelAdapterFactory());
-        language.put(SendTo.class, new SendToCamelAdapterFactory());
-        language.put(ExclusiveGateway.class, new ExclusiveGatewayCamelAdapterFactory());
+        Map<Class<? extends FlowObject>, CamelAdapterFactory> dictionary = DefaultBPMNToCamelDictionary.INSTANCE.getDictionary();
 
-        return new BPMNAppToCamelRoutesBuilder().buildCamelRoutes(bpmnApp, language);
+        return new BPMNAppToCamelRoutesBuilder().buildCamelRoutes(bpmnApp, dictionary);
     }
 
 }

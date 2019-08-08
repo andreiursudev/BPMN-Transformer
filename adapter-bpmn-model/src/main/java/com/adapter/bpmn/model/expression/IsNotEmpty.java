@@ -1,4 +1,4 @@
-package com.adapter.bpmn.camel.expresion;
+package com.adapter.bpmn.model.expression;
 
 import com.adapter.bpmn.model.expression.Expression;
 

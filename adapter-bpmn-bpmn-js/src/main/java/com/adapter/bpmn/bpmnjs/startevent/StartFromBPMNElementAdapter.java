@@ -2,19 +2,22 @@ package com.adapter.bpmn.bpmnjs.startevent;
 
 import com.adapter.bpmn.bpmnjs.*;
 import com.adapter.bpmn.bpmnjs.adapter.AdapterHelper;
-import com.adapter.bpmn.bpmnjs.BPMNJsAdapter;
+import com.adapter.bpmn.bpmnjs.BPMNElementAdapter;
+import com.adapter.bpmn.model.flowobject.FlowObject;
 import org.camunda.bpm.model.bpmn.instance.FlowNode;
 import org.camunda.bpm.model.bpmn.instance.StartEvent;
 
-public class StartEventBPMNJsAdapter implements BPMNJsAdapter {
+import java.util.Map;
+
+public class StartFromBPMNElementAdapter implements BPMNElementAdapter {
     private String name;
 
-    public StartEventBPMNJsAdapter(String name) {
+    public StartFromBPMNElementAdapter(String name) {
         this.name = name;
     }
 
     @Override
-    public BPMNDiagramElement addElement(BPMNDiagram bpmnDiagram, String conditionalFlowName, ElementIdGenerator elementIdGenerator, Position currentPosition) {
+    public BPMNDiagramElement addElement(BPMNDiagram bpmnDiagram, String conditionalFlowName, ElementIdGenerator elementIdGenerator, Position currentPosition, Map<Class<? extends FlowObject>, BPMNElementAdapterFactory> dictionary) {
         String nextId = elementIdGenerator.getNextId();
 
         int shapeBoundXPosition = currentPosition.getX() + 15;
@@ -32,6 +35,5 @@ public class StartEventBPMNJsAdapter implements BPMNJsAdapter {
 
         return bpmnDiagramElement;
     }
-
 
 }

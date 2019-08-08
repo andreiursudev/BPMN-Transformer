@@ -1,10 +1,14 @@
 package com.adapter.bpmn.bpmnjs;
 
-import com.adapter.bpmn.bpmnjs.startevent.MyStartEvent;
+import com.adapter.bpmn.bpmnjs.startevent.StartFromBPMNElementAdapterFactory;
 import com.adapter.bpmn.model.BusinessProcesses;
+import com.adapter.bpmn.model.flowobject.FlowObject;
+import com.adapter.bpmn.model.flowobject.startevent.StartFrom;
 import org.junit.Test;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import static org.junit.Assert.assertEquals;
 
@@ -12,7 +16,9 @@ public class BPMNJsDiagramTest {
 
     @Test
     public void testEmptyBusinessProcessesAsXmlDiagram() throws Exception {
-        BPMNJsDiagram diagram = new BPMNJsDiagram(new ArrayList<>());
+        Map<Class<? extends FlowObject>, BPMNElementAdapterFactory> dictionary = DefaultBPMNToBPMNElementsDictionary.INSTANCE.getDictionary();
+
+        BPMNJsDiagram diagram = new BPMNJsDiagram(new ArrayList<>(), dictionary);
 
         String xml = diagram.asXml();
 
@@ -29,9 +35,15 @@ public class BPMNJsDiagramTest {
 
     @Test
     public void testBusinessProcessesWithStartEvent() throws Exception {
+        Map<Class<? extends FlowObject>, BPMNElementAdapterFactory> dictionary = DefaultBPMNToBPMNElementsDictionary.INSTANCE.getDictionary();
+
         ArrayList<BusinessProcesses> businessProcesses = new ArrayList<>();
-        businessProcesses.add(new BusinessProcesses(new MyStartEvent()));
-        BPMNJsDiagram diagram = new BPMNJsDiagram(businessProcesses);
+        businessProcesses.add(new BusinessProcesses(new StartFrom("My Start Event")));
+
+
+
+
+        BPMNJsDiagram diagram = new BPMNJsDiagram(businessProcesses,dictionary);
 
         String xml = diagram.asXml();
 

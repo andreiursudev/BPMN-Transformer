@@ -1,7 +1,7 @@
 package com.adapter.bpmn.model;
 
 import com.adapter.bpmn.model.flowobject.FlowObject;
-import com.adapter.bpmn.model.flowobject.StartEvent;
+import com.adapter.bpmn.model.flowobject.startevent.StartEvent;
 
 import java.util.Arrays;
 import java.util.List;

@@ -1,19 +1,22 @@
-package com.adapter.bpmn.bpmnjs.adapter;
+package com.adapter.bpmn.bpmnjs.activity;
 
 import com.adapter.bpmn.bpmnjs.*;
+import com.adapter.bpmn.model.flowobject.FlowObject;
 import org.camunda.bpm.model.bpmn.instance.Task;
+
+import java.util.Map;
 
 import static com.adapter.bpmn.bpmnjs.adapter.AdapterHelper.createElementWithSequenceFlow;
 
-public class ActivityBPMNJsAdapter implements BPMNJsAdapter {
+public class NamedActivityBPMNElementAdapter implements BPMNElementAdapter {
     private String name;
 
-    public ActivityBPMNJsAdapter(String name) {
+    public NamedActivityBPMNElementAdapter(String name) {
         this.name = name;
     }
 
     @Override
-    public BPMNDiagramElement addElement(BPMNDiagram bpmnDiagram, String conditionalFlowName, ElementIdGenerator elementIdGenerator, Position currentPosition) {
+    public BPMNDiagramElement addElement(BPMNDiagram bpmnDiagram, String conditionalFlowName, ElementIdGenerator elementIdGenerator, Position currentPosition, Map<Class<? extends FlowObject>, BPMNElementAdapterFactory> dictionary) {
         String nextId = elementIdGenerator.getNextId();
         String name = this.name;
         int shapeBoundXPosition = currentPosition.getX();

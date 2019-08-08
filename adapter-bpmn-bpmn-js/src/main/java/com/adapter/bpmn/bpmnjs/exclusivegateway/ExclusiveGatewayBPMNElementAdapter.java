@@ -1,4 +1,4 @@
-package com.adapter.bpmn.bpmnjs.adapter;
+package com.adapter.bpmn.bpmnjs.exclusivegateway;
 
 import com.adapter.bpmn.bpmnjs.*;
 import com.adapter.bpmn.model.connectingobject.ConditionalFlow;
@@ -9,23 +9,24 @@ import org.camunda.bpm.model.bpmn.instance.ExclusiveGateway;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import static com.adapter.bpmn.bpmnjs.adapter.AdapterHelper.*;
 
-public class ExclusiveGatewayBPMNJsAdapter implements BPMNJsAdapter {
+public class ExclusiveGatewayBPMNElementAdapter implements BPMNElementAdapter {
 
 
     private String name;
     private List<ConditionalFlow> conditionalFlows;
 
-    public ExclusiveGatewayBPMNJsAdapter(String name, List<ConditionalFlow> conditionalFlows) {
+    public ExclusiveGatewayBPMNElementAdapter(String name, List<ConditionalFlow> conditionalFlows) {
 
         this.name = name;
         this.conditionalFlows = conditionalFlows;
     }
 
     @Override
-    public BPMNDiagramElement addElement(BPMNDiagram bpmnDiagram, String conditionalFlowName, ElementIdGenerator elementIdGenerator, Position currentPosition) {
+    public BPMNDiagramElement addElement(BPMNDiagram bpmnDiagram, String conditionalFlowName, ElementIdGenerator elementIdGenerator, Position currentPosition, Map<Class<? extends FlowObject>, BPMNElementAdapterFactory> dictionary) {
         String nextId = elementIdGenerator.getNextId();
 
         int shapeBoundXPosition = currentPosition.getX() + 15;
@@ -50,7 +51,8 @@ public class ExclusiveGatewayBPMNJsAdapter implements BPMNJsAdapter {
             conditionalFlowName = StringUtils.join(StringUtils.splitByCharacterTypeCamelCase(conditionalFlow.getExpression().getClass().getSimpleName()), ' ');
             conditionalFlowPosition.incrementX();
             for (FlowObject flowObject : conditionalFlow.getFlowObjects()) {
-                BPMNDiagramElement currentElement = ((BPMNJsAdapter) flowObject.getAdapter()).addElement(bpmnDiagram, conditionalFlowName, elementIdGenerator, conditionalFlowPosition);
+                BPMNElementAdapter adapter = dictionary.get(flowObject.getClass()).getAdapter(flowObject);
+                BPMNDiagramElement currentElement = adapter.addElement(bpmnDiagram, conditionalFlowName, elementIdGenerator, conditionalFlowPosition, dictionary);
                 bpmnDiagram.setCurrentElement(currentElement);
                 conditionalFlowName = "";
             }

@@ -1,8 +1,8 @@
 package com.adapter.bpmn.camel;
 
-import com.adapter.bpmn.camel.activity.sendto.SendTo;
+import com.adapter.bpmn.model.flowobject.activity.SendTo;
 import com.adapter.bpmn.camel.activity.sendto.SendToCamelAdapterFactory;
-import com.adapter.bpmn.camel.startevent.StartFrom;
+import com.adapter.bpmn.model.flowobject.startevent.StartFrom;
 import com.adapter.bpmn.camel.startevent.StartFromCamelAdapterFactory;
 import com.adapter.bpmn.model.flowobject.FlowObject;
 import org.apache.camel.Exchange;
@@ -35,10 +35,10 @@ public class BPMNAppToCamelRouteBuilderWithStartFromAndSendToTest extends CamelT
         businessProcesses.add(new BusinessProcesses(new StartFrom("direct:myRoute"), new SendTo("mock:out")));
 
         BPMNApp bpmnApp = new BPMNApp(businessProcesses);
-        Map<Class<? extends FlowObject>, CamelAdapterFactory> language = new HashMap<>();
-        language.put(StartFrom.class, new StartFromCamelAdapterFactory());
-        language.put(SendTo.class, new SendToCamelAdapterFactory());
-        return new BPMNAppToCamelRoutesBuilder().buildCamelRoutes(bpmnApp, language);
+
+        Map<Class<? extends FlowObject>, CamelAdapterFactory> dictionary = DefaultBPMNToCamelDictionary.INSTANCE.getDictionary();
+
+        return new BPMNAppToCamelRoutesBuilder().buildCamelRoutes(bpmnApp, dictionary);
     }
 
 }

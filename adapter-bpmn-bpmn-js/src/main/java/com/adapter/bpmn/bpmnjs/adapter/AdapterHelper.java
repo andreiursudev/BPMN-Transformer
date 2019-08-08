@@ -15,12 +15,12 @@ import org.camunda.bpm.model.bpmn.instance.di.Waypoint;
 
 public class AdapterHelper {
 
-    static <T extends BpmnModelElementInstance> BPMNDiagramElement createElementWithSequenceFlow(Class<T> type, BPMNDiagram bpmnDiagram, Element element) {
+    public static <T extends BpmnModelElementInstance> BPMNDiagramElement createElementWithSequenceFlow(Class<T> type, BPMNDiagram bpmnDiagram, Element element) {
         FlowNode flowNode = (FlowNode) createElement(type, bpmnDiagram, element);
         return getBpmnDiagramElement(bpmnDiagram, element, flowNode, bpmnDiagram.getPlane());
     }
 
-    static <T extends BpmnModelElementInstance> BPMNDiagramElement createElementWithCustomLabelAndSequenceFlow(Class<T> type, BPMNDiagram bpmnDiagram, Element element) {
+    public static <T extends BpmnModelElementInstance> BPMNDiagramElement createElementWithCustomLabelAndSequenceFlow(Class<T> type, BPMNDiagram bpmnDiagram, Element element) {
         FlowNode flowNode = (FlowNode) createElementWitCustomhLabel(type, bpmnDiagram, element);
         return getBpmnDiagramElement(bpmnDiagram, element, flowNode, bpmnDiagram.getPlane());
     }
@@ -67,7 +67,7 @@ public class AdapterHelper {
         return bpmnDiagramElement;
     }
 
-    static BpmnEdge createSequenceFlow(BpmnModelInstance modelInstance, Process process, BPMNDiagramElement from, BPMNDiagramElement to, String conditionalFlowName, BpmnPlane plane) {
+    public static BpmnEdge createSequenceFlow(BpmnModelInstance modelInstance, Process process, BPMNDiagramElement from, BPMNDiagramElement to, String conditionalFlowName, BpmnPlane plane) {
         FlowNode fromFlowNode = from.getFlowNode();
         FlowNode toFlowNode = to.getFlowNode();
         String identifier = fromFlowNode.getId() + "-" + toFlowNode.getId();

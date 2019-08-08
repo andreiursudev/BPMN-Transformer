@@ -1,14 +1,14 @@
 package com.adapter.bpmn.camel;
 
-import com.adapter.bpmn.camel.activity.convertfiletostring.ConvertFileToString;
+import com.adapter.bpmn.model.flowobject.activity.ConvertFileToString;
 import com.adapter.bpmn.camel.activity.convertfiletostring.ConvertFileToStringAdapterFactory;
-import com.adapter.bpmn.camel.exclusivegateway.ExclusiveGateway;
 import com.adapter.bpmn.camel.exclusivegateway.ExclusiveGatewayCamelAdapterFactory;
-import com.adapter.bpmn.camel.infolog.InfoLog;
+import com.adapter.bpmn.model.flowobject.activity.InfoLog;
 import com.adapter.bpmn.camel.infolog.InfoLogCamelAdapterFactory;
-import com.adapter.bpmn.camel.activity.sendto.SendTo;
+import com.adapter.bpmn.model.flowobject.activity.SendTo;
 import com.adapter.bpmn.camel.activity.sendto.SendToCamelAdapterFactory;
-import com.adapter.bpmn.camel.startevent.StartFrom;
+import com.adapter.bpmn.model.flowobject.exclusivegateway.ExclusiveGateway;
+import com.adapter.bpmn.model.flowobject.startevent.StartFrom;
 import com.adapter.bpmn.camel.startevent.StartFromCamelAdapterFactory;
 import com.adapter.bpmn.model.flowobject.FlowObject;
 
