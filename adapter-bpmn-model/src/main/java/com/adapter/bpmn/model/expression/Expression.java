@@ -4,7 +4,7 @@ import java.util.function.Predicate;
 
 public class Expression {
 
-    Predicate condition;
+    private Predicate condition;
 
     public Expression(Predicate condition) {
         this.condition = condition;

@@ -1,7 +1,7 @@
 package com.adapter.bpmn.bpmnjs;
 
 import com.adapter.bpmn.bpmnjs.testapp.MyActivity;
-import com.adapter.bpmn.bpmnjs.testapp.MyStartEvent;
+import com.adapter.bpmn.bpmnjs.startevent.MyStartEvent;
 import com.adapter.bpmn.model.BusinessProcesses;
 import org.junit.Test;
 

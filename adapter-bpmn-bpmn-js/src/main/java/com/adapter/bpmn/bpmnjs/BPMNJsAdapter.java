@@ -1,4 +1,4 @@
-package com.adapter.bpmn.bpmnjs.adapter;
+package com.adapter.bpmn.bpmnjs;
 
 import com.adapter.bpmn.bpmnjs.BPMNDiagram;
 import com.adapter.bpmn.bpmnjs.BPMNDiagramElement;

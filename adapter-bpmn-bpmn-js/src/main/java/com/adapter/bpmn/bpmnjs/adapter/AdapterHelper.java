@@ -43,7 +43,7 @@ public class AdapterHelper {
     }
 
 
-    static <T extends BpmnModelElementInstance> T createElement(Class<T> type, BPMNDiagram bpmnDiagram, Element element) {
+    public static <T extends BpmnModelElementInstance> T createElement(Class<T> type, BPMNDiagram bpmnDiagram, Element element) {
         return createElement(type,
                 bpmnDiagram.getModelInstance(),
                 bpmnDiagram.getPlane(),

@@ -1,8 +1,8 @@
 package com.adapter.bpmn.camel;
 
-import com.adapter.bpmn.camel.sendto.SendToCamelAdapterFactory;
+import com.adapter.bpmn.camel.activity.sendto.SendToCamelAdapterFactory;
 import com.adapter.bpmn.camel.startevent.StartFrom;
-import com.adapter.bpmn.camel.sendto.SendTo;
+import com.adapter.bpmn.camel.activity.sendto.SendTo;
 import com.adapter.bpmn.camel.startevent.StartFromCamelAdapterFactory;
 import com.adapter.bpmn.model.flowobject.FlowObject;
 import org.apache.camel.builder.RouteBuilder;

@@ -1,4 +1,4 @@
-package com.adapter.bpmn.camel.sendto;
+package com.adapter.bpmn.camel.activity.sendto;
 
 import com.adapter.bpmn.camel.CamelAdapter;
 import org.apache.camel.model.ProcessorDefinition;

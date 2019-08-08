@@ -1,5 +1,6 @@
 package com.adapter.bpmn.bpmnjs;
 
+import com.adapter.bpmn.bpmnjs.startevent.MyStartEvent;
 import com.adapter.bpmn.bpmnjs.testapp.*;
 import com.adapter.bpmn.bpmnjs.testapp.MyEndEvent;
 import com.adapter.bpmn.model.BusinessProcesses;

@@ -7,11 +7,16 @@ import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.model.RouteDefinition;
 
 import java.util.Map;
+import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 
 public class BPMNAppToCamelRoutesBuilder {
 
-    public RouteBuilder buildCamelRoutes(final BPMNApp app, Map<Class<? extends FlowObject>, CamelAdapterFactory> dictionary) {
+    public RouteBuilder buildCamelRoutes(final BPMNApp app, Map<Class<? extends FlowObject>, CamelAdapterFactory>... dictionaries) {
+        Map<? extends Class<? extends FlowObject>, CamelAdapterFactory> dictionary = mergeDictionaries(dictionaries);
+
         return new RouteBuilder() {
             @Override
             public void configure() throws Exception {
@@ -22,6 +27,13 @@ public class BPMNAppToCamelRoutesBuilder {
                 }
             }
         };
+    }
+
+    private Map<? extends Class<? extends FlowObject>, CamelAdapterFactory> mergeDictionaries(Map<Class<? extends FlowObject>, CamelAdapterFactory>[] dictionaries) {
+        return Stream.of(dictionaries)
+                    .map(Map::entrySet)
+                    .flatMap(Set::stream)
+                    .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
     }
 
 }

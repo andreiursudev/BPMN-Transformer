@@ -1,6 +1,5 @@
 package com.adapter.bpmn.bpmnjs;
 
-import com.adapter.bpmn.bpmnjs.adapter.BPMNJsAdapter;
 import com.adapter.bpmn.model.BusinessProcesses;
 import com.adapter.bpmn.model.flowobject.FlowObject;
 import org.camunda.bpm.model.bpmn.Bpmn;
