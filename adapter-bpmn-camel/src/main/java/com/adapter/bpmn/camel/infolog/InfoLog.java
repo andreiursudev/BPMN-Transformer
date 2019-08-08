@@ -1,4 +1,4 @@
-package com.adapter.bpmn.camel.adapter;
+package com.adapter.bpmn.camel.infolog;
 
 import com.adapter.bpmn.camel.CamelAdapter;
 import com.adapter.bpmn.model.flowobject.Activity;

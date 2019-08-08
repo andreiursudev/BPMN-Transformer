@@ -15,4 +15,8 @@ public class SendTo implements Activity {
     public CamelAdapter getAdapter() {
         return new SendToCamelAdapter(uri);
     }
+
+    public String getUri() {
+        return uri;
+    }
 }

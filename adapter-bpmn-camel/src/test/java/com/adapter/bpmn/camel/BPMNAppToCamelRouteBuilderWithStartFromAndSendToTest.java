@@ -1,7 +1,10 @@
 package com.adapter.bpmn.camel;
 
 import com.adapter.bpmn.camel.sendto.SendTo;
+import com.adapter.bpmn.camel.sendto.SendToCamelAdapterFactory;
 import com.adapter.bpmn.camel.startevent.StartFrom;
+import com.adapter.bpmn.camel.startevent.StartFromCamelAdapterFactory;
+import com.adapter.bpmn.model.flowobject.FlowObject;
 import org.apache.camel.Exchange;
 import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.component.mock.MockEndpoint;
@@ -10,9 +13,11 @@ import org.junit.Test;
 import com.adapter.bpmn.model.BusinessProcesses;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
-public class BPMNCamelRouteBuilderWithStartFromAndSendToTest extends CamelTestSupport {
+public class BPMNAppToCamelRouteBuilderWithStartFromAndSendToTest extends CamelTestSupport {
 
     @Test
     public void test() throws Exception {
@@ -29,10 +34,13 @@ public class BPMNCamelRouteBuilderWithStartFromAndSendToTest extends CamelTestSu
         List<BusinessProcesses> businessProcesses = new ArrayList<>();
         businessProcesses.add(new BusinessProcesses(new StartFrom("direct:myRoute"), new SendTo("mock:out")));
 
-        BPMNCamelApp bpmnCamelApp = new BPMNCamelApp(businessProcesses);
-
-        return new BPMNCamelRouteBuilder().buildCamelRoutes(bpmnCamelApp);
+        BPMNApp bpmnApp = new BPMNApp(businessProcesses);
+        Map<Class<? extends FlowObject>, CamelAdapterFactory> language = new HashMap<>();
+        language.put(StartFrom.class, new StartFromCamelAdapterFactory());
+        language.put(SendTo.class, new SendToCamelAdapterFactory());
+        return new BPMNAppToCamelRoutesBuilder().buildCamelRoutes(bpmnApp, language);
     }
 
 }
+
 

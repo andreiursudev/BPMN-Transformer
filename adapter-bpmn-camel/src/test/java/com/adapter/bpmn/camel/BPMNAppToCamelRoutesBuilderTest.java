@@ -5,15 +5,15 @@ import org.junit.Test;
 import java.util.ArrayList;
 
 
-public class BPMNCamelRouteBuilderTest {
+public class BPMNAppToCamelRoutesBuilderTest {
 
     @Test(expected = IllegalArgumentException.class)
     public void testBusinessProcessShouldNotBeNull() throws Exception {
-        new BPMNCamelApp(null);
+        new BPMNApp(null);
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void testBusinessProcessShouldNotEmpty() throws Exception {
-        new BPMNCamelApp(new ArrayList<>());
+        new BPMNApp(new ArrayList<>());
     }
 }

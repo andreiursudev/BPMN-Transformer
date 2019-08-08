@@ -15,4 +15,8 @@ public class StartFrom implements StartEvent {
     public CamelAdapter getAdapter() {
         return new StartFromCamelAdapter(uri);
     }
+
+    public String getUri() {
+        return uri;
+    }
 }
