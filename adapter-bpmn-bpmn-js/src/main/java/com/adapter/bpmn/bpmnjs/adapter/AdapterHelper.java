@@ -1,6 +1,7 @@
 package com.adapter.bpmn.bpmnjs.adapter;
 
 import com.adapter.bpmn.bpmnjs.*;
+import com.adapter.bpmn.bpmnjs.diagram.*;
 import org.camunda.bpm.model.bpmn.BpmnModelInstance;
 import org.camunda.bpm.model.bpmn.instance.*;
 import org.camunda.bpm.model.bpmn.instance.Process;

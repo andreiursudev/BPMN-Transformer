@@ -1,6 +1,9 @@
 package com.adapter.bpmn.bpmnjs.endevent;
 
 import com.adapter.bpmn.bpmnjs.*;
+import com.adapter.bpmn.bpmnjs.diagram.BPMNDiagramElement;
+import com.adapter.bpmn.bpmnjs.diagram.Element;
+import com.adapter.bpmn.bpmnjs.diagram.Position;
 import org.camunda.bpm.model.bpmn.instance.EndEvent;
 
 import static com.adapter.bpmn.bpmnjs.adapter.AdapterHelper.createElementWithSequenceFlow;

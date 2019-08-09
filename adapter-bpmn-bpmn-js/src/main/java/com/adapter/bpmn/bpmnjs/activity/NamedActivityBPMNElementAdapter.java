@@ -1,6 +1,9 @@
 package com.adapter.bpmn.bpmnjs.activity;
 
 import com.adapter.bpmn.bpmnjs.*;
+import com.adapter.bpmn.bpmnjs.diagram.BPMNDiagramElement;
+import com.adapter.bpmn.bpmnjs.diagram.Element;
+import com.adapter.bpmn.bpmnjs.diagram.Position;
 import org.camunda.bpm.model.bpmn.instance.Task;
 
 import static com.adapter.bpmn.bpmnjs.adapter.AdapterHelper.createElementWithSequenceFlow;

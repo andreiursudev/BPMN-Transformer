@@ -1,4 +1,4 @@
-package com.adapter.bpmn.bpmnjs;
+package com.adapter.bpmn.bpmnjs.diagram;
 
 import org.camunda.bpm.model.bpmn.instance.FlowNode;
 

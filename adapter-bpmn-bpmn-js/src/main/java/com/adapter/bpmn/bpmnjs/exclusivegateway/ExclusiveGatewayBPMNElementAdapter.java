@@ -1,6 +1,9 @@
 package com.adapter.bpmn.bpmnjs.exclusivegateway;
 
 import com.adapter.bpmn.bpmnjs.*;
+import com.adapter.bpmn.bpmnjs.diagram.BPMNDiagramElement;
+import com.adapter.bpmn.bpmnjs.diagram.Element;
+import com.adapter.bpmn.bpmnjs.diagram.Position;
 import com.adapter.bpmn.model.connectingobject.ConditionalFlow;
 import com.adapter.bpmn.model.flowobject.FlowObject;
 import org.apache.commons.lang3.StringUtils;
@@ -29,7 +32,7 @@ public class ExclusiveGatewayBPMNElementAdapter implements BPMNElementAdapter {
     public BPMNDiagramElement addElement(BPMNJsDiagram bpmnJsDiagram, String conditionalFlowName) {
         String nextId = bpmnJsDiagram.getNextId();
         Position currentPosition = bpmnJsDiagram.getCurrentPosition();
-        Map<Class<? extends FlowObject>, BPMNElementAdapterFactory> dictionary = bpmnJsDiagram.getDictionary();
+        BPMNToBPMNElementsDictionary dictionary = bpmnJsDiagram.getDictionary();
 
         Element exclusiveGateway = new Element(nextId, name, new ExclusiveGatewayShapeBound(currentPosition));
 
@@ -44,7 +47,7 @@ public class ExclusiveGatewayBPMNElementAdapter implements BPMNElementAdapter {
             ConditionalFlow conditionalFlow = conditionalFlows.get(i);
             conditionalFlowName = StringUtils.join(StringUtils.splitByCharacterTypeCamelCase(conditionalFlow.getExpression().getClass().getSimpleName()), ' ');
             for (FlowObject flowObject : conditionalFlow.getFlowObjects()) {
-                BPMNElementAdapter adapter = dictionary.get(flowObject.getClass()).getAdapter(flowObject);
+                BPMNElementAdapter adapter = dictionary.getAdapter(flowObject);
                 bpmnJsDiagram.setLastNode(adapter.addElement(bpmnJsDiagram, conditionalFlowName));
                 conditionalFlowName = "";
             }

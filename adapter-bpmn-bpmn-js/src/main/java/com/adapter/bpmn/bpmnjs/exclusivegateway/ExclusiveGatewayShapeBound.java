@@ -1,7 +1,7 @@
 package com.adapter.bpmn.bpmnjs.exclusivegateway;
 
-import com.adapter.bpmn.bpmnjs.Position;
-import com.adapter.bpmn.bpmnjs.ShapeBound;
+import com.adapter.bpmn.bpmnjs.diagram.Position;
+import com.adapter.bpmn.bpmnjs.diagram.ShapeBound;
 
 public class ExclusiveGatewayShapeBound extends ShapeBound {
     public ExclusiveGatewayShapeBound(Position position) {

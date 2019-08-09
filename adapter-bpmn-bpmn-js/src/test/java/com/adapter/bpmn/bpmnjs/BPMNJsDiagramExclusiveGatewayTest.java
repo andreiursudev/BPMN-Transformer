@@ -19,7 +19,7 @@ import static org.junit.Assert.assertEquals;
 
 public class BPMNJsDiagramExclusiveGatewayTest {
 
-    private final Map<Class<? extends FlowObject>, BPMNElementAdapterFactory> dictionary = DefaultBPMNToBPMNElementsDictionary.INSTANCE.getDictionary();
+    private final BPMNToBPMNElementsDictionary dictionary = new BPMNToBPMNElementsDictionary();
 
     @Test
     public void testBusinessProcessesWithExclusiveGatewayAndActivity() throws Exception {

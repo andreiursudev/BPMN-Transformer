@@ -1,7 +1,7 @@
 package com.adapter.bpmn.bpmnjs.exclusivegateway;
 
-import com.adapter.bpmn.bpmnjs.FlowPoints;
-import com.adapter.bpmn.bpmnjs.Position;
+import com.adapter.bpmn.bpmnjs.diagram.FlowPoints;
+import com.adapter.bpmn.bpmnjs.diagram.Position;
 
 public class ExclusiveGatewayFlowPoints extends FlowPoints {
     public ExclusiveGatewayFlowPoints(Position position) {

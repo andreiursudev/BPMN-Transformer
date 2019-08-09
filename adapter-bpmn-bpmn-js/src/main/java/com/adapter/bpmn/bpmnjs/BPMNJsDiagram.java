@@ -1,5 +1,8 @@
 package com.adapter.bpmn.bpmnjs;
 
+import com.adapter.bpmn.bpmnjs.diagram.BPMNDiagramElement;
+import com.adapter.bpmn.bpmnjs.diagram.ElementIdGenerator;
+import com.adapter.bpmn.bpmnjs.diagram.Position;
 import com.adapter.bpmn.model.BusinessProcesses;
 import com.adapter.bpmn.model.flowobject.FlowObject;
 import com.adapter.bpmn.model.flowobject.startevent.StartEvent;
@@ -20,12 +23,12 @@ public class BPMNJsDiagram {
     private ElementIdGenerator elementIdGenerator = new ElementIdGenerator();
     private Position currentPosition = new Position(0, 0);
     private BPMNDiagramElement lastNode;
-    private Map<Class<? extends FlowObject>, BPMNElementAdapterFactory> dictionary;
+    private BPMNToBPMNElementsDictionary dictionary;
 
     public BPMNJsDiagram() {
     }
 
-    public String asXml(List<BusinessProcesses> businessProcesses, Map<Class<? extends FlowObject>, BPMNElementAdapterFactory> dictionary) {
+    public String asXml(List<BusinessProcesses> businessProcesses, BPMNToBPMNElementsDictionary dictionary) {
         this.dictionary = dictionary;
         buildDiagram(businessProcesses);
         Bpmn.validateModel(modelInstance);
@@ -59,10 +62,10 @@ public class BPMNJsDiagram {
     private void adaptFlowObject( List<BusinessProcesses> businessProcesses) {
         for (BusinessProcesses businessProcess : businessProcesses) {
             StartEvent startEvent = businessProcess.getStartEvent();
-            BPMNElementAdapter adapter = dictionary.get(startEvent.getClass()).getAdapter(startEvent);
+            BPMNElementAdapter adapter = dictionary.getAdapter(startEvent);
             this.setLastNode(adapter.addElement(this, null));
             for (FlowObject flowObject : businessProcess.getFlowObjects()) {
-                BPMNElementAdapter flowObjectAdapter = dictionary.get(flowObject.getClass()).getAdapter(flowObject);
+                BPMNElementAdapter flowObjectAdapter = dictionary.getAdapter(flowObject);
                 this.setLastNode(flowObjectAdapter.addElement(this, null));
             }
         }
@@ -92,7 +95,7 @@ public class BPMNJsDiagram {
         return elementIdGenerator;
     }
 
-    public Map<Class<? extends FlowObject>, BPMNElementAdapterFactory> getDictionary() {
+    public BPMNToBPMNElementsDictionary getDictionary() {
         return dictionary;
     }
 

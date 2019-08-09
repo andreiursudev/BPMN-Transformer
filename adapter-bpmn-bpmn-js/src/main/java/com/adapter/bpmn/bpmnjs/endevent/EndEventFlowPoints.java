@@ -1,7 +1,7 @@
 package com.adapter.bpmn.bpmnjs.endevent;
 
-import com.adapter.bpmn.bpmnjs.FlowPoints;
-import com.adapter.bpmn.bpmnjs.Position;
+import com.adapter.bpmn.bpmnjs.diagram.FlowPoints;
+import com.adapter.bpmn.bpmnjs.diagram.Position;
 
 public class EndEventFlowPoints extends FlowPoints {
     public EndEventFlowPoints(Position position) {

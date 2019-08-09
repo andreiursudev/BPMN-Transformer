@@ -1,7 +1,7 @@
 package com.adapter.bpmn.bpmnjs.activity;
 
-import com.adapter.bpmn.bpmnjs.Position;
-import com.adapter.bpmn.bpmnjs.ShapeBound;
+import com.adapter.bpmn.bpmnjs.diagram.Position;
+import com.adapter.bpmn.bpmnjs.diagram.ShapeBound;
 
 public class ActivityShapeBound extends ShapeBound {
     public ActivityShapeBound(Position position) {

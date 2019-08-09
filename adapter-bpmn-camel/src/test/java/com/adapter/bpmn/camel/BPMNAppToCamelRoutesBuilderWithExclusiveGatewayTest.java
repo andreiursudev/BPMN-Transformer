@@ -3,7 +3,6 @@ package com.adapter.bpmn.camel;
 import com.adapter.bpmn.camel.testapp.IsHelloWorld;
 import com.adapter.bpmn.model.BusinessProcesses;
 import com.adapter.bpmn.model.connectingobject.ConditionalFlow;
-import com.adapter.bpmn.model.flowobject.FlowObject;
 import com.adapter.bpmn.model.flowobject.activity.SendTo;
 import com.adapter.bpmn.model.flowobject.exclusivegateway.ExclusiveGateway;
 import com.adapter.bpmn.model.flowobject.startevent.NamedStartEvent;
@@ -14,7 +13,6 @@ import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 public class BPMNAppToCamelRoutesBuilderWithExclusiveGatewayTest extends CamelTestSupport {
 
@@ -35,9 +33,7 @@ public class BPMNAppToCamelRoutesBuilderWithExclusiveGatewayTest extends CamelTe
 
         BPMNApp bpmnApp = new BPMNApp(businessProcesses);
 
-        Map<Class<? extends FlowObject>, CamelAdapterFactory> dictionary = DefaultBPMNToCamelDictionary.INSTANCE.getDictionary();
-
-        return new BPMNAppToCamelRoutesBuilder().buildCamelRoutes(bpmnApp, dictionary);
+        return new BPMNAppToCamelRoutesBuilder().buildCamelRoutes(bpmnApp, new BPMNToCamelDictionary());
     }
 
 }

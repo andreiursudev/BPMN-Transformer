@@ -1,4 +1,4 @@
-package com.adapter.bpmn.bpmnjs;
+package com.adapter.bpmn.bpmnjs.diagram;
 
 public class Position {
 

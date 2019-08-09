@@ -3,11 +3,11 @@ package com.adapter.bpmn.bpmnjs.startevent;
 import com.adapter.bpmn.bpmnjs.*;
 import com.adapter.bpmn.bpmnjs.adapter.AdapterHelper;
 import com.adapter.bpmn.bpmnjs.BPMNElementAdapter;
-import com.adapter.bpmn.model.flowobject.FlowObject;
+import com.adapter.bpmn.bpmnjs.diagram.BPMNDiagramElement;
+import com.adapter.bpmn.bpmnjs.diagram.Element;
+import com.adapter.bpmn.bpmnjs.diagram.Position;
 import org.camunda.bpm.model.bpmn.instance.FlowNode;
 import org.camunda.bpm.model.bpmn.instance.StartEvent;
-
-import java.util.Map;
 
 public class StartFromBPMNElementAdapter implements BPMNElementAdapter {
     private String name;

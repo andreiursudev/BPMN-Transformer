@@ -1,11 +1,8 @@
 package com.adapter.bpmn.camel.activity.sendto;
 
 import com.adapter.bpmn.camel.CamelAdapter;
-import com.adapter.bpmn.camel.CamelAdapterFactory;
-import com.adapter.bpmn.model.flowobject.FlowObject;
+import com.adapter.bpmn.camel.BPMNToCamelDictionary;
 import org.apache.camel.model.ProcessorDefinition;
-
-import java.util.Map;
 
 public class SendToCamelAdapter implements CamelAdapter {
 
@@ -16,7 +13,7 @@ public class SendToCamelAdapter implements CamelAdapter {
     }
 
     @Override
-    public void adapt(ProcessorDefinition processorDefinition, Map<? extends Class<? extends FlowObject>, CamelAdapterFactory> dictionary) {
+    public void adapt(ProcessorDefinition processorDefinition, BPMNToCamelDictionary dictionary) {
         processorDefinition.to(uri);
     }
 
