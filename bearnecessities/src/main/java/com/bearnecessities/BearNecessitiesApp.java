@@ -14,7 +14,7 @@ import com.adapter.bpmn.model.flowobject.activity.ConvertFileToString;
 import com.adapter.bpmn.model.flowobject.activity.InfoLog;
 import com.adapter.bpmn.model.flowobject.activity.SendTo;
 import com.adapter.bpmn.model.flowobject.exclusivegateway.ExclusiveGateway;
-import com.adapter.bpmn.model.flowobject.startevent.StartFrom;
+import com.adapter.bpmn.model.flowobject.startevent.NamedStartEvent;
 import org.apache.camel.CamelContext;
 import org.apache.camel.impl.DefaultCamelContext;
 
@@ -29,7 +29,7 @@ public class BearNecessitiesApp {
 
 
         ArrayList<BusinessProcesses> businessProcesses = new ArrayList<>();
-        businessProcesses.add(new BusinessProcesses(new StartFrom("file:data/inbox?noop=true"), new ConvertFileToString(), new InfoLog(), new SendTo("mock:out"), new ExclusiveGateway(new ConditionalFlow(new IsNotEmpty(), new InfoLog()))));
+        businessProcesses.add(new BusinessProcesses(new NamedStartEvent("file:data/inbox?noop=true"), new ConvertFileToString(""), new InfoLog(""), new SendTo("mock:out"), new ExclusiveGateway(new ConditionalFlow(new IsNotEmpty(), new InfoLog("")))));
         businessProcesses.add(new BusinessProcesses(new BearNecessitiesStartPoint(), new LogBearNecessity()));
         BPMNApp app = new BPMNApp(businessProcesses);
 
@@ -44,8 +44,8 @@ public class BearNecessitiesApp {
 
 
         Map<Class<? extends FlowObject>, BPMNElementAdapterFactory> dictionary = new HashMap<>();
-        BPMNJsDiagram diagram = new BPMNJsDiagram(app.getBusinessProcesses(), dictionary);
-        String xmlDiagram = diagram.asXml();
+        BPMNJsDiagram diagram = new BPMNJsDiagram();
+        String xmlDiagram = diagram.asXml(businessProcesses, dictionary);
         System.out.println(xmlDiagram);
 
 

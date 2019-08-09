@@ -8,7 +8,7 @@ import com.adapter.bpmn.camel.infolog.InfoLogCamelAdapterFactory;
 import com.adapter.bpmn.model.flowobject.activity.SendTo;
 import com.adapter.bpmn.camel.activity.sendto.SendToCamelAdapterFactory;
 import com.adapter.bpmn.model.flowobject.exclusivegateway.ExclusiveGateway;
-import com.adapter.bpmn.model.flowobject.startevent.StartFrom;
+import com.adapter.bpmn.model.flowobject.startevent.NamedStartEvent;
 import com.adapter.bpmn.camel.startevent.StartFromCamelAdapterFactory;
 import com.adapter.bpmn.model.flowobject.FlowObject;
 
@@ -23,7 +23,7 @@ public enum DefaultBPMNToCamelDictionary {
 
     DefaultBPMNToCamelDictionary() {
         dictionary = new HashMap<>();
-        dictionary.put(StartFrom.class, new StartFromCamelAdapterFactory());
+        dictionary.put(NamedStartEvent.class, new StartFromCamelAdapterFactory());
         dictionary.put(SendTo.class, new SendToCamelAdapterFactory());
         dictionary.put(ExclusiveGateway.class, new ExclusiveGatewayCamelAdapterFactory());
         dictionary.put(InfoLog.class, new InfoLogCamelAdapterFactory());

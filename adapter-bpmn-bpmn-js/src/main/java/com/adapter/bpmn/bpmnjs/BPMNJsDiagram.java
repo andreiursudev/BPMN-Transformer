@@ -5,63 +5,60 @@ import com.adapter.bpmn.model.flowobject.FlowObject;
 import com.adapter.bpmn.model.flowobject.startevent.StartEvent;
 import org.camunda.bpm.model.bpmn.Bpmn;
 import org.camunda.bpm.model.bpmn.BpmnModelInstance;
-import org.camunda.bpm.model.bpmn.instance.*;
+import org.camunda.bpm.model.bpmn.instance.Definitions;
 import org.camunda.bpm.model.bpmn.instance.Process;
-import org.camunda.bpm.model.bpmn.instance.bpmndi.*;
+import org.camunda.bpm.model.bpmn.instance.bpmndi.BpmnDiagram;
+import org.camunda.bpm.model.bpmn.instance.bpmndi.BpmnPlane;
 
 import java.util.List;
 import java.util.Map;
 
 public class BPMNJsDiagram {
-    private List<BusinessProcesses> businessProcesses;
-    private Map<Class<? extends FlowObject>, BPMNElementAdapterFactory> dictionary;
+    private BpmnModelInstance modelInstance;
+    private Process process;
+    private BpmnPlane plane;
+
 
     private Position currentPosition = new Position(0, 0);
-    private BpmnModelInstance modelInstance;
     private ElementIdGenerator elementIdGenerator = new ElementIdGenerator();
 
-    public BPMNJsDiagram(List<BusinessProcesses> businessProcesses, Map<Class<? extends FlowObject>, BPMNElementAdapterFactory> dictionary) {
-
-        this.businessProcesses = businessProcesses;
-        this.dictionary = dictionary;
+    public BPMNJsDiagram() {
     }
 
-    public String asXml() {
-        BpmnModelInstance modelInstance = getBpmnModelInstance();
-
-
+    public String asXml(List<BusinessProcesses> businessProcesses, Map<Class<? extends FlowObject>, BPMNElementAdapterFactory> dictionary) {
+        buildDiagram(businessProcesses, dictionary);
         Bpmn.validateModel(modelInstance);
         return Bpmn.convertToString(modelInstance);
     }
 
-    BpmnModelInstance getBpmnModelInstance() {
+    void buildDiagram(List<BusinessProcesses> businessProcesses, Map<Class<? extends FlowObject>, BPMNElementAdapterFactory> dictionary) {
         modelInstance = Bpmn.createEmptyModel();
         Definitions definitions = modelInstance.newInstance(Definitions.class);
         definitions.setTargetNamespace("http://camunda.org/examples");
+        definitions.setId("definitions");
         modelInstance.setDefinitions(definitions);
 
-        Process process = modelInstance.newInstance(Process.class);
+        process = modelInstance.newInstance(Process.class);
         process.setAttributeValue("id", "ProjectName", true);
         definitions.addChildElement(process);
-        definitions.setId("definitions");
 
         BpmnDiagram diagram = modelInstance.newInstance(BpmnDiagram.class);
-        BpmnPlane plane = modelInstance.newInstance(BpmnPlane.class);
+        diagram.setId("BPMNDiagram");
+
+        plane = modelInstance.newInstance(BpmnPlane.class);
         plane.setBpmnElement(process);
         plane.setId("BPMNPlane");
-        diagram.setId("BPMNDiagram");
+
         diagram.setBpmnPlane(plane);
         definitions.addChildElement(diagram);
 
-
-        adaptFlowObject(process, plane, businessProcesses);
-        return modelInstance;
+        adaptFlowObject(businessProcesses, dictionary);
     }
 
-    private void adaptFlowObject(Process parentElement, BpmnPlane plane, List<BusinessProcesses> businessProcesses) {
+    private void adaptFlowObject( List<BusinessProcesses> businessProcesses, Map<Class<? extends FlowObject>, BPMNElementAdapterFactory> dictionary) {
         BPMNDiagramElement currentElement = null;
 
-        BPMNDiagram bpmnDiagram = new BPMNDiagram(modelInstance, plane, parentElement, currentElement);
+        BPMNDiagram bpmnDiagram = new BPMNDiagram(modelInstance, plane, process, currentElement);
 
         for (BusinessProcesses businessProcess : businessProcesses) {
             StartEvent startEvent = businessProcess.getStartEvent();

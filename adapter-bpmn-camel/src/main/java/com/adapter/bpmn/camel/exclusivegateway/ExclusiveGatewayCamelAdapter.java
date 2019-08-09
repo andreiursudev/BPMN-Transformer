@@ -21,9 +21,7 @@ public class ExclusiveGatewayCamelAdapter implements CamelAdapter {
     public void adapt(ProcessorDefinition processorDefinition, Map<? extends Class<? extends FlowObject>, CamelAdapterFactory> dictionary) {
         ChoiceDefinition choiceDefinition = processorDefinition.choice();
         for (ConditionalFlow conditionalFlow : conditionalFlows) {
-
             choiceDefinition.when(e -> conditionalFlow.getExpression().getCondition().test(e.getIn().getBody(Object.class)));
-
             conditionalFlow.getFlowObjects().forEach(flowObject -> dictionary.get(flowObject.getClass()).getAdapter(flowObject).adapt(choiceDefinition, dictionary));
             choiceDefinition.endChoice();
         }

@@ -1,26 +1,25 @@
 package com.adapter.bpmn.bpmnjs;
 
-import com.adapter.bpmn.bpmnjs.startevent.StartFromBPMNElementAdapterFactory;
 import com.adapter.bpmn.model.BusinessProcesses;
 import com.adapter.bpmn.model.flowobject.FlowObject;
-import com.adapter.bpmn.model.flowobject.startevent.StartFrom;
+import com.adapter.bpmn.model.flowobject.startevent.NamedStartEvent;
 import org.junit.Test;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Map;
 
+import static com.adapter.bpmn.bpmnjs.TestHelper.assertEqualsIgnoreLineEndings;
 import static org.junit.Assert.assertEquals;
 
 public class BPMNJsDiagramTest {
 
+    private final Map<Class<? extends FlowObject>, BPMNElementAdapterFactory> dictionary = DefaultBPMNToBPMNElementsDictionary.INSTANCE.getDictionary();
+
     @Test
     public void testEmptyBusinessProcessesAsXmlDiagram() throws Exception {
-        Map<Class<? extends FlowObject>, BPMNElementAdapterFactory> dictionary = DefaultBPMNToBPMNElementsDictionary.INSTANCE.getDictionary();
+        BPMNJsDiagram diagram = new BPMNJsDiagram();
 
-        BPMNJsDiagram diagram = new BPMNJsDiagram(new ArrayList<>(), dictionary);
-
-        String xml = diagram.asXml();
+        String xml = diagram.asXml(new ArrayList<>(), dictionary);
 
         String expected = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?>\n" +
                 "<definitions xmlns:bpmndi=\"http://www.omg.org/spec/BPMN/20100524/DI\" id=\"definitions\" targetNamespace=\"http://camunda.org/examples\" xmlns=\"http://www.omg.org/spec/BPMN/20100524/MODEL\">\n" +
@@ -35,17 +34,12 @@ public class BPMNJsDiagramTest {
 
     @Test
     public void testBusinessProcessesWithStartEvent() throws Exception {
-        Map<Class<? extends FlowObject>, BPMNElementAdapterFactory> dictionary = DefaultBPMNToBPMNElementsDictionary.INSTANCE.getDictionary();
-
         ArrayList<BusinessProcesses> businessProcesses = new ArrayList<>();
-        businessProcesses.add(new BusinessProcesses(new StartFrom("My Start Event")));
+        businessProcesses.add(new BusinessProcesses(new NamedStartEvent("My Start Event")));
 
+        BPMNJsDiagram diagram = new BPMNJsDiagram();
 
-
-
-        BPMNJsDiagram diagram = new BPMNJsDiagram(businessProcesses,dictionary);
-
-        String xml = diagram.asXml();
+        String xml = diagram.asXml(businessProcesses, dictionary);
 
         String expected = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?>\n" +
                 "<definitions xmlns:bpmndi=\"http://www.omg.org/spec/BPMN/20100524/DI\" xmlns:dc=\"http://www.omg.org/spec/DD/20100524/DC\" id=\"definitions\" targetNamespace=\"http://camunda.org/examples\" xmlns=\"http://www.omg.org/spec/BPMN/20100524/MODEL\">\n" +
@@ -64,8 +58,6 @@ public class BPMNJsDiagramTest {
         assertEqualsIgnoreLineEndings(xml, expected);
     }
 
-    private void assertEqualsIgnoreLineEndings(String xml, String expected) {
-        assertEquals(expected.replaceAll("[\r\n]+", "\n"), xml.replaceAll("[\r\n]+", "\n"));
-    }
+
 
 }

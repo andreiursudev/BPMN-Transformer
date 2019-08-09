@@ -3,11 +3,11 @@ package com.adapter.bpmn.bpmnjs.startevent;
 import com.adapter.bpmn.bpmnjs.BPMNElementAdapter;
 import com.adapter.bpmn.bpmnjs.BPMNElementAdapterFactory;
 import com.adapter.bpmn.model.flowobject.FlowObject;
-import com.adapter.bpmn.model.flowobject.startevent.StartFrom;
+import com.adapter.bpmn.model.flowobject.startevent.NamedStartEvent;
 
 public class StartFromBPMNElementAdapterFactory implements BPMNElementAdapterFactory {
     @Override
     public BPMNElementAdapter getAdapter(FlowObject flowObject) {
-        return new StartFromBPMNElementAdapter(((StartFrom)flowObject).getUri());
+        return new StartFromBPMNElementAdapter(((NamedStartEvent)flowObject).getName());
     }
 }

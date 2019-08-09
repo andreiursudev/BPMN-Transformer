@@ -1,6 +1,6 @@
 package com.adapter.bpmn.model.flowobject.endevent;
 
-public class NamedEndEvent implements EndEvent{
+public class NamedEndEvent implements EndEvent {
     private String name;
 
     public NamedEndEvent(String name) {

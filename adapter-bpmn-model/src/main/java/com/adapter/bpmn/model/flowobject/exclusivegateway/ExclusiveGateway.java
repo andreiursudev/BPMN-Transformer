@@ -9,8 +9,7 @@ import java.util.List;
 public class ExclusiveGateway implements FlowObject {
     private List<ConditionalFlow> conditionalFlow;
 
-    public ExclusiveGateway(ConditionalFlow ... conditionalFlows) {
-
+    public ExclusiveGateway(ConditionalFlow... conditionalFlows) {
         this.conditionalFlow = Arrays.asList(conditionalFlows);
     }
 

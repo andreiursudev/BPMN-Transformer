@@ -6,17 +6,17 @@ import com.adapter.bpmn.model.flowobject.FlowObject;
 import java.util.Arrays;
 import java.util.List;
 
-public class ConditionalFlow implements ConnectingObject{
+public class ConditionalFlow implements ConnectingObject {
 
     private Expression expression;
     private List<FlowObject> flowObjects;
 
-    public ConditionalFlow(Expression expression, FlowObject ... flowObjects) {
+    public ConditionalFlow(Expression expression, FlowObject... flowObjects) {
         this.expression = expression;
         this.flowObjects = Arrays.asList(flowObjects);
     }
 
-    public Expression getExpression(){
+    public Expression getExpression() {
         return expression;
     }
 

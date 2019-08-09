@@ -9,7 +9,6 @@ import java.util.Map;
 
 public class InfoLogAdapter implements CamelAdapter {
 
-
     @Override
     public void adapt(ProcessorDefinition processorDefinition, Map<? extends Class<? extends FlowObject>, CamelAdapterFactory> dictionary) {
         processorDefinition.log("Message received: ${body}");

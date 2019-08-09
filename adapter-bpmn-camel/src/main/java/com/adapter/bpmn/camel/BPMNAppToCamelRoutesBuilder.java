@@ -16,7 +16,6 @@ public class BPMNAppToCamelRoutesBuilder {
 
     public RouteBuilder buildCamelRoutes(final BPMNApp app, Map<Class<? extends FlowObject>, CamelAdapterFactory>... dictionaries) {
         Map<? extends Class<? extends FlowObject>, CamelAdapterFactory> dictionary = mergeDictionaries(dictionaries);
-
         return new RouteBuilder() {
             @Override
             public void configure() throws Exception {
@@ -31,9 +30,9 @@ public class BPMNAppToCamelRoutesBuilder {
 
     private Map<? extends Class<? extends FlowObject>, CamelAdapterFactory> mergeDictionaries(Map<Class<? extends FlowObject>, CamelAdapterFactory>[] dictionaries) {
         return Stream.of(dictionaries)
-                    .map(Map::entrySet)
-                    .flatMap(Set::stream)
-                    .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
+                .map(Map::entrySet)
+                .flatMap(Set::stream)
+                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
     }
 
 }
