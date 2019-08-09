@@ -17,21 +17,16 @@ public class StartFromBPMNElementAdapter implements BPMNElementAdapter {
     }
 
     @Override
-    public BPMNDiagramElement addElement(BPMNDiagram bpmnDiagram, String conditionalFlowName, ElementIdGenerator elementIdGenerator, Position currentPosition, Map<Class<? extends FlowObject>, BPMNElementAdapterFactory> dictionary) {
-        String nextId = elementIdGenerator.getNextId();
+    public BPMNDiagramElement addElement(BPMNJsDiagram bpmnJsDiagram, String conditionalFlowName) {
+        String nextId = bpmnJsDiagram.getNextId();
+        Position currentPosition = bpmnJsDiagram.getCurrentPosition();
 
-        int shapeBoundXPosition = currentPosition.getX() + 15;
-        int shapeBoundYPosition = currentPosition.getY() + 20;
-        int shapeBoundHeight = 50;
-        int shapeBoundWidth = 50;
+        Element element = new Element(nextId, name, new StartEventShapeBound(currentPosition));
 
-        Element element = new Element(nextId, name, shapeBoundXPosition, shapeBoundYPosition, shapeBoundHeight, shapeBoundWidth);
+        FlowNode flowNode = AdapterHelper.createElement(StartEvent.class, element, bpmnJsDiagram);
+        BPMNDiagramElement bpmnDiagramElement = new BPMNDiagramElement(flowNode, new StartEventFlowPoints(currentPosition));
 
-        FlowNode flowNode = AdapterHelper.createElement(StartEvent.class, bpmnDiagram, element);
-
-        BPMNDiagramElement bpmnDiagramElement = new BPMNDiagramElement(flowNode, currentPosition, new Position(currentPosition.getX() + 65, currentPosition.getY() + 45), null);
-
-        currentPosition.incrementX();
+        bpmnJsDiagram.incrementX();
 
         return bpmnDiagramElement;
     }

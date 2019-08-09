@@ -17,21 +17,22 @@ public class BPMNJsDiagram {
     private BpmnModelInstance modelInstance;
     private Process process;
     private BpmnPlane plane;
-
-
-    private Position currentPosition = new Position(0, 0);
     private ElementIdGenerator elementIdGenerator = new ElementIdGenerator();
+    private Position currentPosition = new Position(0, 0);
+    private BPMNDiagramElement lastNode;
+    private Map<Class<? extends FlowObject>, BPMNElementAdapterFactory> dictionary;
 
     public BPMNJsDiagram() {
     }
 
     public String asXml(List<BusinessProcesses> businessProcesses, Map<Class<? extends FlowObject>, BPMNElementAdapterFactory> dictionary) {
-        buildDiagram(businessProcesses, dictionary);
+        this.dictionary = dictionary;
+        buildDiagram(businessProcesses);
         Bpmn.validateModel(modelInstance);
         return Bpmn.convertToString(modelInstance);
     }
 
-    void buildDiagram(List<BusinessProcesses> businessProcesses, Map<Class<? extends FlowObject>, BPMNElementAdapterFactory> dictionary) {
+    void buildDiagram(List<BusinessProcesses> businessProcesses) {
         modelInstance = Bpmn.createEmptyModel();
         Definitions definitions = modelInstance.newInstance(Definitions.class);
         definitions.setTargetNamespace("http://camunda.org/examples");
@@ -52,24 +53,75 @@ public class BPMNJsDiagram {
         diagram.setBpmnPlane(plane);
         definitions.addChildElement(diagram);
 
-        adaptFlowObject(businessProcesses, dictionary);
+        adaptFlowObject(businessProcesses);
     }
 
-    private void adaptFlowObject( List<BusinessProcesses> businessProcesses, Map<Class<? extends FlowObject>, BPMNElementAdapterFactory> dictionary) {
-        BPMNDiagramElement currentElement = null;
-
-        BPMNDiagram bpmnDiagram = new BPMNDiagram(modelInstance, plane, process, currentElement);
-
+    private void adaptFlowObject( List<BusinessProcesses> businessProcesses) {
         for (BusinessProcesses businessProcess : businessProcesses) {
             StartEvent startEvent = businessProcess.getStartEvent();
             BPMNElementAdapter adapter = dictionary.get(startEvent.getClass()).getAdapter(startEvent);
-            bpmnDiagram.setCurrentElement(adapter.addElement(bpmnDiagram, null, elementIdGenerator, currentPosition, dictionary));
+            this.setLastNode(adapter.addElement(this, null));
             for (FlowObject flowObject : businessProcess.getFlowObjects()) {
                 BPMNElementAdapter flowObjectAdapter = dictionary.get(flowObject.getClass()).getAdapter(flowObject);
-                bpmnDiagram.setCurrentElement(flowObjectAdapter.addElement(bpmnDiagram, null, elementIdGenerator, currentPosition, dictionary));
+                this.setLastNode(flowObjectAdapter.addElement(this, null));
             }
         }
     }
 
+    public BpmnModelInstance getModelInstance() {
+        return modelInstance;
+    }
 
+    public BpmnPlane getPlane() {
+        return plane;
+    }
+
+    public Process getProcess() {
+        return process;
+    }
+
+    public BPMNDiagramElement getLastNode() {
+        return lastNode;
+    }
+
+    public void setLastNode(BPMNDiagramElement lastNode) {
+        this.lastNode = lastNode;
+    }
+
+    public ElementIdGenerator getElementIdGenerator() {
+        return elementIdGenerator;
+    }
+
+    public Map<Class<? extends FlowObject>, BPMNElementAdapterFactory> getDictionary() {
+        return dictionary;
+    }
+
+    public Position getCurrentPosition() {
+        return currentPosition;
+    }
+
+    public String getNextId() {
+        return getElementIdGenerator().getNextId();
+    }
+
+    public void incrementX() {
+        currentPosition.incrementX();
+    }
+
+    public void setCurrentPosition(Position currentPosition) {
+        this.currentPosition = new Position(currentPosition.getX(),currentPosition.getY());
+    }
+
+    public void incrementY() {
+        currentPosition.incrementY();
+    }
+
+    public void decrementY() {
+        currentPosition.decrementY();
+    }
+
+    public void decrementX() {
+        currentPosition.decrementX();
+
+    }
 }

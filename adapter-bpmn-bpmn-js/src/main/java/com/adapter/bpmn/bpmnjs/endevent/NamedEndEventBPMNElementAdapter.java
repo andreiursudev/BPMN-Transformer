@@ -1,10 +1,7 @@
 package com.adapter.bpmn.bpmnjs.endevent;
 
 import com.adapter.bpmn.bpmnjs.*;
-import com.adapter.bpmn.model.flowobject.FlowObject;
 import org.camunda.bpm.model.bpmn.instance.EndEvent;
-
-import java.util.Map;
 
 import static com.adapter.bpmn.bpmnjs.adapter.AdapterHelper.createElementWithSequenceFlow;
 
@@ -16,19 +13,13 @@ public class NamedEndEventBPMNElementAdapter implements BPMNElementAdapter {
     }
 
     @Override
-    public BPMNDiagramElement addElement(BPMNDiagram bpmnDiagram, String conditionalFlowName, ElementIdGenerator elementId, Position currentPosition, Map<Class<? extends FlowObject>, BPMNElementAdapterFactory> dictionary) {
-        String nextId = elementId.getNextId();
-        String name = this.name;
-        int shapeBoundXPosition = currentPosition.getX();
-        int shapeBoundYPosition = currentPosition.getY() + 20;
-        int shapeBoundHeight = 50;
-        int shapeBoundWidth = 50;
+    public BPMNDiagramElement addElement(BPMNJsDiagram bpmnJsDiagram, String conditionalFlowName) {
+        String nextId = bpmnJsDiagram.getNextId();
+        Position currentPosition = bpmnJsDiagram.getCurrentPosition();
 
-        Position leftFlowPoint = new Position(currentPosition.getX(), currentPosition.getY() + 45);
+        Element element = new Element(nextId, name, new EndEventShapeBound(currentPosition));
 
-        Element element = new Element(nextId, name, shapeBoundXPosition, shapeBoundYPosition, shapeBoundHeight, shapeBoundWidth, conditionalFlowName, leftFlowPoint, leftFlowPoint);
-
-        BPMNDiagramElement elementWithSequenceFlow = createElementWithSequenceFlow(EndEvent.class, bpmnDiagram, element);
+        BPMNDiagramElement elementWithSequenceFlow = createElementWithSequenceFlow(EndEvent.class, element, new EndEventFlowPoints(currentPosition), conditionalFlowName, bpmnJsDiagram);
 
         currentPosition.incrementX();
         return elementWithSequenceFlow;

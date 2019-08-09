@@ -28,5 +28,13 @@ public class Position {
         y+= 100;
 
     }
+
+    public void decrementY() {
+        y-=100;
+    }
+
+    public void decrementX() {
+        x-=200;
+    }
 }
 
