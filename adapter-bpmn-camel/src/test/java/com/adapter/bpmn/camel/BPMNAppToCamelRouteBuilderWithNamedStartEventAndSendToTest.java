@@ -1,6 +1,6 @@
 package com.adapter.bpmn.camel;
 
-import com.adapter.bpmn.model.BusinessProcesses;
+import com.adapter.bpmn.model.BusinessProcess;
 import com.adapter.bpmn.model.flowobject.activity.SendTo;
 import com.adapter.bpmn.model.flowobject.startevent.NamedStartEvent;
 import org.apache.camel.Exchange;
@@ -26,8 +26,8 @@ public class BPMNAppToCamelRouteBuilderWithNamedStartEventAndSendToTest extends 
 
     @Override
     protected RouteBuilder createRouteBuilder() throws Exception {
-        List<BusinessProcesses> businessProcesses = new ArrayList<>();
-        businessProcesses.add(new BusinessProcesses(new NamedStartEvent("direct:myRoute"), new SendTo("mock:out")));
+        List<BusinessProcess> businessProcesses = new ArrayList<>();
+        businessProcesses.add(new BusinessProcess(new NamedStartEvent("direct:myRoute"), new SendTo("mock:out")));
 
         BPMNApp bpmnApp = new BPMNApp(businessProcesses);
 

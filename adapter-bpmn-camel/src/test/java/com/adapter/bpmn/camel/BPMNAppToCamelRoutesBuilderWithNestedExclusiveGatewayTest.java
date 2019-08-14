@@ -1,7 +1,7 @@
 package com.adapter.bpmn.camel;
 
 import com.adapter.bpmn.camel.testapp.IsHelloWorld;
-import com.adapter.bpmn.model.BusinessProcesses;
+import com.adapter.bpmn.model.BusinessProcess;
 import com.adapter.bpmn.model.connectingobject.ConditionalFlow;
 import com.adapter.bpmn.model.expression.IsNotEmpty;
 import com.adapter.bpmn.model.flowobject.activity.SendTo;
@@ -29,8 +29,8 @@ public class BPMNAppToCamelRoutesBuilderWithNestedExclusiveGatewayTest extends C
 
     @Override
     protected RouteBuilder createRouteBuilder() throws Exception {
-        List<BusinessProcesses> businessProcesses = new ArrayList<>();
-        businessProcesses.add(new BusinessProcesses(new NamedStartEvent("direct:myRoute"), new ExclusiveGateway(new ConditionalFlow(new IsNotEmpty(), new ExclusiveGateway(new ConditionalFlow(new IsHelloWorld(), new SendTo("mock:out")))))));
+        List<BusinessProcess> businessProcesses = new ArrayList<>();
+        businessProcesses.add(new BusinessProcess(new NamedStartEvent("direct:myRoute"), new ExclusiveGateway(new ConditionalFlow(new IsNotEmpty(), new ExclusiveGateway(new ConditionalFlow(new IsHelloWorld(), new SendTo("mock:out")))))));
 
         BPMNApp bpmnApp = new BPMNApp(businessProcesses);
 

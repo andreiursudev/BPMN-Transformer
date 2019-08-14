@@ -19,7 +19,7 @@ public class BPMNToBPMNElementsDictionary implements Dictionary {
 
    private final Map<Class<? extends FlowObject>, BPMNElementAdapterFactory> dictionary;
 
-    BPMNToBPMNElementsDictionary() {
+    public BPMNToBPMNElementsDictionary() {
         dictionary = new HashMap<>();
         dictionary.put(NamedStartEvent.class, new StartFromBPMNElementAdapterFactory());
         dictionary.put(NamedActivity.class, new NamedActivityBPMNElementAdapterFactory());

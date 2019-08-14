@@ -3,7 +3,7 @@ package com.adapter.bpmn.bpmnjs;
 import com.adapter.bpmn.bpmnjs.diagram.BPMNDiagramElement;
 import com.adapter.bpmn.bpmnjs.diagram.ElementIdGenerator;
 import com.adapter.bpmn.bpmnjs.diagram.Position;
-import com.adapter.bpmn.model.BusinessProcesses;
+import com.adapter.bpmn.model.BusinessProcess;
 import com.adapter.bpmn.model.flowobject.FlowObject;
 import com.adapter.bpmn.model.flowobject.startevent.StartEvent;
 import org.camunda.bpm.model.bpmn.Bpmn;
@@ -14,7 +14,6 @@ import org.camunda.bpm.model.bpmn.instance.bpmndi.BpmnDiagram;
 import org.camunda.bpm.model.bpmn.instance.bpmndi.BpmnPlane;
 
 import java.util.List;
-import java.util.Map;
 
 public class BPMNJsDiagram {
     private BpmnModelInstance modelInstance;
@@ -28,14 +27,14 @@ public class BPMNJsDiagram {
     public BPMNJsDiagram() {
     }
 
-    public String asXml(List<BusinessProcesses> businessProcesses, BPMNToBPMNElementsDictionary dictionary) {
+    public String asXml(List<BusinessProcess> businessProcesses, BPMNToBPMNElementsDictionary dictionary) {
         this.dictionary = dictionary;
         buildDiagram(businessProcesses);
         Bpmn.validateModel(modelInstance);
         return Bpmn.convertToString(modelInstance);
     }
 
-    void buildDiagram(List<BusinessProcesses> businessProcesses) {
+    void buildDiagram(List<BusinessProcess> businessProcesses) {
         modelInstance = Bpmn.createEmptyModel();
         Definitions definitions = modelInstance.newInstance(Definitions.class);
         definitions.setTargetNamespace("http://camunda.org/examples");
@@ -59,8 +58,8 @@ public class BPMNJsDiagram {
         adaptFlowObject(businessProcesses);
     }
 
-    private void adaptFlowObject( List<BusinessProcesses> businessProcesses) {
-        for (BusinessProcesses businessProcess : businessProcesses) {
+    private void adaptFlowObject( List<BusinessProcess> businessProcesses) {
+        for (BusinessProcess businessProcess : businessProcesses) {
             StartEvent startEvent = businessProcess.getStartEvent();
             BPMNElementAdapter adapter = dictionary.getAdapter(startEvent);
             this.setLastNode(adapter.addElement(this, null));

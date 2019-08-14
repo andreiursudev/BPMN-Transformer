@@ -8,14 +8,14 @@ import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 
-public class BusinessProcessesTest {
+public class BusinessProcessTest {
 
     @Test
     public void testConstructor() throws Exception {
         StartEvent startEvent = new NamedStartEvent("name");
         Activity activity = new InfoLog("name");
 
-        BusinessProcesses bp = new BusinessProcesses(startEvent, activity);
+        BusinessProcess bp = new BusinessProcess(startEvent, activity);
 
         assertEquals(startEvent, bp.getStartEvent());
         assertEquals(activity, bp.getFlowObjects().get(0));

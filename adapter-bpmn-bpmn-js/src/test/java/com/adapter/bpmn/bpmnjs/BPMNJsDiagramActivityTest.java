@@ -1,13 +1,11 @@
 package com.adapter.bpmn.bpmnjs;
 
-import com.adapter.bpmn.model.BusinessProcesses;
-import com.adapter.bpmn.model.flowobject.FlowObject;
+import com.adapter.bpmn.model.BusinessProcess;
 import com.adapter.bpmn.model.flowobject.activity.NamedActivity;
 import com.adapter.bpmn.model.flowobject.startevent.NamedStartEvent;
 import org.junit.Test;
 
 import java.util.ArrayList;
-import java.util.Map;
 
 import static com.adapter.bpmn.bpmnjs.TestHelper.assertEqualsIgnoreLineEndings;
 import static org.junit.Assert.assertEquals;
@@ -18,8 +16,8 @@ public class BPMNJsDiagramActivityTest {
 
     @Test
     public void testBusinessProcessesWithStartEventAndActivity() throws Exception {
-        ArrayList<BusinessProcesses> businessProcesses = new ArrayList<>();
-        businessProcesses.add(new BusinessProcesses(new NamedStartEvent("My Start Event"), new NamedActivity("This is an activity")));
+        ArrayList<BusinessProcess> businessProcesses = new ArrayList<>();
+        businessProcesses.add(new BusinessProcess(new NamedStartEvent("My Start Event"), new NamedActivity("This is an activity")));
         BPMNJsDiagram diagram = new BPMNJsDiagram();
 
         String xml = diagram.asXml(businessProcesses, dictionary);
@@ -57,8 +55,8 @@ public class BPMNJsDiagramActivityTest {
 
     @Test
     public void testBusinessProcessesWithStartEventAndTwoActivity() throws Exception {
-        ArrayList<BusinessProcesses> businessProcesses = new ArrayList<>();
-        businessProcesses.add(new BusinessProcesses(new NamedStartEvent("My Start Event"), new NamedActivity("This is an activity"), new NamedActivity("This is an activity")));
+        ArrayList<BusinessProcess> businessProcesses = new ArrayList<>();
+        businessProcesses.add(new BusinessProcess(new NamedStartEvent("My Start Event"), new NamedActivity("This is an activity"), new NamedActivity("This is an activity")));
         BPMNJsDiagram diagram = new BPMNJsDiagram();
 
         String xml = diagram.asXml(businessProcesses, dictionary);

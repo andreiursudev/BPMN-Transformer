@@ -1,6 +1,6 @@
 package com.adapter.bpmn.camel;
 
-import com.adapter.bpmn.model.BusinessProcesses;
+import com.adapter.bpmn.model.BusinessProcess;
 import com.adapter.bpmn.model.flowobject.activity.SendTo;
 import com.adapter.bpmn.model.flowobject.startevent.NamedStartEvent;
 import org.apache.camel.builder.RouteBuilder;
@@ -11,7 +11,7 @@ import org.junit.Test;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BPMNAppToCamelRoutesBuilderWithTwoBusinessProcessesTest extends CamelTestSupport {
+public class BPMNAppToCamelRoutesBuilderWithTwoBusinessProcessTest extends CamelTestSupport {
 
     @Test
     public void test() throws Exception {
@@ -30,9 +30,9 @@ public class BPMNAppToCamelRoutesBuilderWithTwoBusinessProcessesTest extends Cam
 
     @Override
     protected RouteBuilder createRouteBuilder() throws Exception {
-        List<BusinessProcesses> businessProcesses = new ArrayList<>();
-        businessProcesses.add(new BusinessProcesses(new NamedStartEvent("direct:myRoute"), new SendTo("mock:out")));
-        businessProcesses.add(new BusinessProcesses(new NamedStartEvent("direct:myRoute2"), new SendTo("mock:out2")));
+        List<BusinessProcess> businessProcesses = new ArrayList<>();
+        businessProcesses.add(new BusinessProcess(new NamedStartEvent("direct:myRoute"), new SendTo("mock:out")));
+        businessProcesses.add(new BusinessProcess(new NamedStartEvent("direct:myRoute2"), new SendTo("mock:out2")));
 
         BPMNApp bpmnApp = new BPMNApp(businessProcesses);
 

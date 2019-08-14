@@ -6,11 +6,11 @@ import com.adapter.bpmn.model.flowobject.startevent.StartEvent;
 import java.util.Arrays;
 import java.util.List;
 
-public class BusinessProcesses {
+public class BusinessProcess {
     private StartEvent startEvent;
     private List<FlowObject> flowObject;
 
-    public BusinessProcesses(StartEvent startEvent, FlowObject... flowObjects) {
+    public BusinessProcess(StartEvent startEvent, FlowObject... flowObjects) {
         this.startEvent = startEvent;
         this.flowObject = Arrays.asList(flowObjects);
     }
