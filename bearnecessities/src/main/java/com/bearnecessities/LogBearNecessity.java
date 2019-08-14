@@ -1,6 +1,9 @@
 package com.bearnecessities;
 
-import com.adapter.bpmn.model.flowobject.FlowObject;
+import com.adapter.bpmn.model.flowobject.activity.NamedActivity;
 
-public class LogBearNecessity implements FlowObject {
+public class LogBearNecessity extends NamedActivity {
+    public LogBearNecessity() {
+        super("Log bear");
+    }
 }

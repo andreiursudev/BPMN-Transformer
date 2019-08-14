@@ -30,4 +30,8 @@ public class BPMNToBPMNElementsDictionary implements Dictionary {
     public BPMNElementAdapter getAdapter(FlowObject flowObject) {
         return dictionary.get(flowObject.getClass()).getAdapter(flowObject);
     }
+
+    public Map<Class<? extends FlowObject>, BPMNElementAdapterFactory> getDictionary() {
+        return dictionary;
+    }
 }

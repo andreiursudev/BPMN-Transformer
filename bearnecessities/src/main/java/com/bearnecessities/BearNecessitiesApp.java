@@ -29,13 +29,13 @@ public class BearNecessitiesApp {
 
         camelContext.addRoutes(new BPMNAppToCamelRoutesBuilder().buildCamelRoutes(app, new BearNecessitiesDictionaryBPMNTo()));
 
-        camelContext.start();
+      /*  camelContext.start();
         Thread.sleep(5000);
-        camelContext.stop();
+        camelContext.stop();*/
 
 
         BPMNJsDiagram diagram = new BPMNJsDiagram();
-        String xmlDiagram = diagram.asXml(businessProcesses, new BPMNToBPMNElementsDictionary());
+        String xmlDiagram = diagram.asXml(businessProcesses, new BearNecessitiesBPMNJsDictionary());
         System.out.println(xmlDiagram);
     }
 }
