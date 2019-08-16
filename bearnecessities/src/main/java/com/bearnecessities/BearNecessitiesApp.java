@@ -1,7 +1,6 @@
 package com.bearnecessities;
 
 import com.adapter.bpmn.bpmnjs.BPMNJsDiagram;
-import com.adapter.bpmn.bpmnjs.BPMNToBPMNElementsDictionary;
 import com.adapter.bpmn.camel.BPMNApp;
 import com.adapter.bpmn.camel.BPMNAppToCamelRoutesBuilder;
 import com.adapter.bpmn.model.BusinessProcess;
@@ -29,13 +28,13 @@ public class BearNecessitiesApp {
 
         camelContext.addRoutes(new BPMNAppToCamelRoutesBuilder().buildCamelRoutes(app, new BearNecessitiesDictionaryBPMNTo()));
 
-      /*  camelContext.start();
+        camelContext.start();
         Thread.sleep(5000);
-        camelContext.stop();*/
+        camelContext.stop();
 
 
         BPMNJsDiagram diagram = new BPMNJsDiagram();
-        String xmlDiagram = diagram.asXml(businessProcesses, new BearNecessitiesBPMNJsDictionary());
+        String xmlDiagram = diagram.asXml(businessProcesses, new BearNecessitiesBPMNJsDictionaryModel());
         System.out.println(xmlDiagram);
     }
 }

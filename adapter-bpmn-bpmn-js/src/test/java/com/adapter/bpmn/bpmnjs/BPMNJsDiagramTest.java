@@ -11,7 +11,7 @@ import static org.junit.Assert.assertEquals;
 
 public class BPMNJsDiagramTest {
 
-    private final BPMNToBPMNElementsDictionary dictionary = new BPMNToBPMNElementsDictionary();
+    private final BPMNModelToBPMNElementsDictionary dictionary = new BPMNModelToBPMNElementsDictionary();
 
     @Test
     public void testEmptyBusinessProcessesAsXmlDiagram() throws Exception {

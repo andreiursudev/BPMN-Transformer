@@ -1,10 +1,10 @@
 package com.adapter.bpmn.camel.startevent;
 
-import com.adapter.bpmn.camel.CamelAdapter;
+import com.adapter.bpmn.camel.StartEventCamelAdapter;
 import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.model.RouteDefinition;
 
-public class StartFromCamelAdapter implements CamelAdapter {
+public class StartFromCamelAdapter extends StartEventCamelAdapter {
 
     private String uri;
 

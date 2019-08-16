@@ -14,7 +14,7 @@ public class BPMNAppToCamelRoutesBuilder {
             public void configure() throws Exception {
                 for (BusinessProcess businessProcess : app.getBusinessProcesses()) {
                     StartEvent startEvent = businessProcess.getStartEvent();
-                    RouteDefinition routeDefinition = dictionary.getAdapter(startEvent).adapt(this);
+                    RouteDefinition routeDefinition = ((StartEventCamelAdapter)dictionary.getAdapter(startEvent)).adapt(this);
                     businessProcess.getFlowObjects().forEach(flowObject -> dictionary.getAdapter(flowObject).adapt(routeDefinition, dictionary));
                 }
             }

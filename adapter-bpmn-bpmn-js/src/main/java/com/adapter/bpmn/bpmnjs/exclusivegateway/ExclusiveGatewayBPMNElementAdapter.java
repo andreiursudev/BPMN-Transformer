@@ -12,7 +12,6 @@ import org.camunda.bpm.model.bpmn.instance.ExclusiveGateway;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import static com.adapter.bpmn.bpmnjs.adapter.AdapterHelper.*;
 
@@ -32,7 +31,7 @@ public class ExclusiveGatewayBPMNElementAdapter implements BPMNElementAdapter {
     public BPMNDiagramElement addElement(BPMNJsDiagram bpmnJsDiagram, String conditionalFlowName) {
         String nextId = bpmnJsDiagram.getNextId();
         Position currentPosition = bpmnJsDiagram.getCurrentPosition();
-        BPMNToBPMNElementsDictionary dictionary = bpmnJsDiagram.getDictionary();
+        BPMNModelToBPMNElementsDictionary dictionary = bpmnJsDiagram.getDictionary();
 
         Element exclusiveGateway = new Element(nextId, name, new ExclusiveGatewayShapeBound(currentPosition));
 

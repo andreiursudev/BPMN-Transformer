@@ -12,7 +12,7 @@ import static org.junit.Assert.assertEquals;
 
 public class BPMNJsDiagramActivityTest {
 
-    private final BPMNToBPMNElementsDictionary dictionary = new BPMNToBPMNElementsDictionary();
+    private final BPMNModelToBPMNElementsDictionary dictionary = new BPMNModelToBPMNElementsDictionary();
 
     @Test
     public void testBusinessProcessesWithStartEventAndActivity() throws Exception {

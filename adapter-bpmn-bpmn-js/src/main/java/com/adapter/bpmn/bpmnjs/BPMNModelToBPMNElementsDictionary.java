@@ -15,11 +15,11 @@ import com.adapter.bpmn.model.flowobject.startevent.StartEvent;
 import java.util.HashMap;
 import java.util.Map;
 
-public class BPMNToBPMNElementsDictionary implements Dictionary {
+public class BPMNModelToBPMNElementsDictionary implements Dictionary {
 
    private final Map<Class<? extends FlowObject>, BPMNElementAdapterFactory> dictionary;
 
-    public BPMNToBPMNElementsDictionary() {
+    public BPMNModelToBPMNElementsDictionary() {
         dictionary = new HashMap<>();
         dictionary.put(NamedStartEvent.class, new StartFromBPMNElementAdapterFactory());
         dictionary.put(NamedActivity.class, new NamedActivityBPMNElementAdapterFactory());

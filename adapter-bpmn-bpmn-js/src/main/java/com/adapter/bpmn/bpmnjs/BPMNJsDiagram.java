@@ -22,12 +22,12 @@ public class BPMNJsDiagram {
     private ElementIdGenerator elementIdGenerator = new ElementIdGenerator();
     private Position currentPosition = new Position(0, 0);
     private BPMNDiagramElement lastNode;
-    private BPMNToBPMNElementsDictionary dictionary;
+    private BPMNModelToBPMNElementsDictionary dictionary;
 
     public BPMNJsDiagram() {
     }
 
-    public String asXml(List<BusinessProcess> businessProcesses, BPMNToBPMNElementsDictionary dictionary) {
+    public String asXml(List<BusinessProcess> businessProcesses, BPMNModelToBPMNElementsDictionary dictionary) {
         this.dictionary = dictionary;
         buildDiagram(businessProcesses);
         Bpmn.validateModel(modelInstance);
@@ -94,7 +94,7 @@ public class BPMNJsDiagram {
         return elementIdGenerator;
     }
 
-    public BPMNToBPMNElementsDictionary getDictionary() {
+    public BPMNModelToBPMNElementsDictionary getDictionary() {
         return dictionary;
     }
 

@@ -17,7 +17,7 @@ import static org.junit.Assert.assertEquals;
 
 public class BPMNJsDiagramExclusiveGatewayTest {
 
-    private final BPMNToBPMNElementsDictionary dictionary = new BPMNToBPMNElementsDictionary();
+    private final BPMNModelToBPMNElementsDictionary dictionary = new BPMNModelToBPMNElementsDictionary();
 
     @Test
     public void testBusinessProcessesWithExclusiveGatewayAndActivity() throws Exception {
