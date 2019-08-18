@@ -1,7 +1,7 @@
 package com.adapter.bpmn.bpmnjs;
 
 import com.adapter.bpmn.model.BusinessProcess;
-import com.adapter.bpmn.model.flowobject.startevent.NamedStartEvent;
+import com.adapter.bpmn.model.flowobject.startevent.UriStartEvent;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -33,7 +33,7 @@ public class BPMNJsDiagramTest {
     @Test
     public void testBusinessProcessesWithStartEvent() throws Exception {
         ArrayList<BusinessProcess> businessProcesses = new ArrayList<>();
-        businessProcesses.add(new BusinessProcess(new NamedStartEvent("My Start Event")));
+        businessProcesses.add(new BusinessProcess(new UriStartEvent("My Start Event")));
 
         BPMNJsDiagram diagram = new BPMNJsDiagram();
 

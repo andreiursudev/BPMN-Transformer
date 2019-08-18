@@ -104,7 +104,7 @@ public class AdapterHelper {
     private static <T extends BpmnModelElementInstance> T createElement(Class<T> type,
                                                                         BpmnModelInstance modelInstance,
                                                                         BpmnPlane plane,
-                                                                        Process parentElement,
+                                                                        Process process,
                                                                         String nextId,
                                                                         String name,
                                                                         ShapeBound shapeBound,
@@ -112,7 +112,7 @@ public class AdapterHelper {
         T element = modelInstance.newInstance(type);
         element.setAttributeValue("id", nextId, true);
         element.setAttributeValue("name", name, false);
-        parentElement.addChildElement(element);
+        process.addChildElement(element);
 
         BpmnShape bpmnShape = modelInstance.newInstance(BpmnShape.class);
         bpmnShape.setBpmnElement((BaseElement) element);

@@ -11,7 +11,7 @@ import com.adapter.bpmn.model.flowobject.activity.ConvertFileToString;
 import com.adapter.bpmn.model.flowobject.activity.InfoLog;
 import com.adapter.bpmn.model.flowobject.activity.SendTo;
 import com.adapter.bpmn.model.flowobject.exclusivegateway.ExclusiveGateway;
-import com.adapter.bpmn.model.flowobject.startevent.NamedStartEvent;
+import com.adapter.bpmn.model.flowobject.startevent.UriStartEvent;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -22,7 +22,7 @@ public class BPMNToCamelDictionary implements Dictionary {
 
     public BPMNToCamelDictionary() {
         dictionary = new HashMap<>();
-        dictionary.put(NamedStartEvent.class, new StartFromCamelAdapterFactory());
+        dictionary.put(UriStartEvent.class, new StartFromCamelAdapterFactory());
         dictionary.put(SendTo.class, new SendToCamelAdapterFactory());
         dictionary.put(ExclusiveGateway.class, new ExclusiveGatewayCamelAdapterFactory());
         dictionary.put(InfoLog.class, new InfoLogCamelAdapterFactory());
@@ -30,7 +30,11 @@ public class BPMNToCamelDictionary implements Dictionary {
     }
 
     public CamelAdapter getAdapter(FlowObject flowObject) {
-        return dictionary.get(flowObject.getClass()).getAdapter(flowObject);
+        CamelAdapterFactory camelAdapterFactory = dictionary.get(flowObject.getClass());
+        if(camelAdapterFactory == null){
+            throw new AdapterFactoryNotFoundException(flowObject);
+        }
+        return camelAdapterFactory.getAdapter(flowObject);
     }
 
     protected Map<Class<? extends FlowObject>, CamelAdapterFactory> getDictionary() {

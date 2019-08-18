@@ -2,8 +2,7 @@ package com.adapter.bpmn.camel;
 
 import com.adapter.bpmn.model.BusinessProcess;
 import com.adapter.bpmn.model.flowobject.activity.SendTo;
-import com.adapter.bpmn.model.flowobject.startevent.NamedStartEvent;
-import org.apache.camel.Exchange;
+import com.adapter.bpmn.model.flowobject.startevent.UriStartEvent;
 import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.component.mock.MockEndpoint;
 import org.apache.camel.test.junit4.CamelTestSupport;
@@ -12,22 +11,28 @@ import org.junit.Test;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BPMNAppToCamelRouteBuilderWithNamedStartEventAndSendToTest extends CamelTestSupport {
+public class BPMNAppWithTwoBusinessProcessTest extends CamelTestSupport {
 
     @Test
     public void test() throws Exception {
         MockEndpoint mockEndpoint = getMockEndpoint("mock:out");
+        mockEndpoint.expectedMessageCount(1);
+
+        MockEndpoint mockEndpoint2 = getMockEndpoint("mock:out2");
+        mockEndpoint2.expectedMessageCount(1);
 
         template.sendBody("direct:myRoute", "Hello World");
+        template.sendBody("direct:myRoute2", "Hello World");
 
-        Exchange exchange = mockEndpoint.getExchanges().get(0);
-        assertEquals("Hello World", exchange.getIn().getBody(String.class));
+        mockEndpoint.assertIsSatisfied();
+        mockEndpoint2.assertIsSatisfied();
     }
 
     @Override
     protected RouteBuilder createRouteBuilder() throws Exception {
         List<BusinessProcess> businessProcesses = new ArrayList<>();
-        businessProcesses.add(new BusinessProcess(new NamedStartEvent("direct:myRoute"), new SendTo("mock:out")));
+        businessProcesses.add(new BusinessProcess(new UriStartEvent("direct:myRoute"), new SendTo("mock:out")));
+        businessProcesses.add(new BusinessProcess(new UriStartEvent("direct:myRoute2"), new SendTo("mock:out2")));
 
         BPMNApp bpmnApp = new BPMNApp(businessProcesses);
 
@@ -35,5 +40,3 @@ public class BPMNAppToCamelRouteBuilderWithNamedStartEventAndSendToTest extends 
     }
 
 }
-
-

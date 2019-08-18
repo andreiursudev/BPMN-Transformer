@@ -2,7 +2,7 @@ package com.adapter.bpmn.bpmnjs;
 
 import com.adapter.bpmn.model.BusinessProcess;
 import com.adapter.bpmn.model.flowobject.activity.NamedActivity;
-import com.adapter.bpmn.model.flowobject.startevent.NamedStartEvent;
+import com.adapter.bpmn.model.flowobject.startevent.UriStartEvent;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -17,10 +17,10 @@ public class BPMNJsDiagramActivityTest {
     @Test
     public void testBusinessProcessesWithStartEventAndActivity() throws Exception {
         ArrayList<BusinessProcess> businessProcesses = new ArrayList<>();
-        businessProcesses.add(new BusinessProcess(new NamedStartEvent("My Start Event"), new NamedActivity("This is an activity")));
+        businessProcesses.add(new BusinessProcess(new UriStartEvent("My Start Event"), new NamedActivity("This is an activity")));
         BPMNJsDiagram diagram = new BPMNJsDiagram();
 
-        String xml = diagram.asXml(businessProcesses, dictionary);
+        String xml = diagram.asXml(businessProcesses, new BPMNModelToBPMNElementsDictionary());
 
         String expected = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?>\n" +
                 "<definitions xmlns:bpmndi=\"http://www.omg.org/spec/BPMN/20100524/DI\" xmlns:dc=\"http://www.omg.org/spec/DD/20100524/DC\" xmlns:di=\"http://www.omg.org/spec/DD/20100524/DI\" id=\"definitions\" targetNamespace=\"http://camunda.org/examples\" xmlns=\"http://www.omg.org/spec/BPMN/20100524/MODEL\">\n" +
@@ -56,7 +56,7 @@ public class BPMNJsDiagramActivityTest {
     @Test
     public void testBusinessProcessesWithStartEventAndTwoActivity() throws Exception {
         ArrayList<BusinessProcess> businessProcesses = new ArrayList<>();
-        businessProcesses.add(new BusinessProcess(new NamedStartEvent("My Start Event"), new NamedActivity("This is an activity"), new NamedActivity("This is an activity")));
+        businessProcesses.add(new BusinessProcess(new UriStartEvent("My Start Event"), new NamedActivity("This is an activity"), new NamedActivity("This is an activity")));
         BPMNJsDiagram diagram = new BPMNJsDiagram();
 
         String xml = diagram.asXml(businessProcesses, dictionary);

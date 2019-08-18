@@ -9,8 +9,7 @@ import com.adapter.bpmn.model.flowobject.FlowObject;
 import com.adapter.bpmn.model.flowobject.activity.NamedActivity;
 import com.adapter.bpmn.model.flowobject.endevent.NamedEndEvent;
 import com.adapter.bpmn.model.flowobject.exclusivegateway.ExclusiveGateway;
-import com.adapter.bpmn.model.flowobject.startevent.NamedStartEvent;
-import com.adapter.bpmn.model.flowobject.startevent.StartEvent;
+import com.adapter.bpmn.model.flowobject.startevent.UriStartEvent;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -21,7 +20,7 @@ public class BPMNModelToBPMNElementsDictionary implements Dictionary {
 
     public BPMNModelToBPMNElementsDictionary() {
         dictionary = new HashMap<>();
-        dictionary.put(NamedStartEvent.class, new StartFromBPMNElementAdapterFactory());
+        dictionary.put(UriStartEvent.class, new StartFromBPMNElementAdapterFactory());
         dictionary.put(NamedActivity.class, new NamedActivityBPMNElementAdapterFactory());
         dictionary.put(ExclusiveGateway.class, new ExclusiveGatewayBPMNElementAdapterFactory());
         dictionary.put(NamedEndEvent.class, new NamedEndEventBPMNElementAdapterFactory());

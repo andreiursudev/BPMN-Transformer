@@ -7,7 +7,7 @@ import com.adapter.bpmn.model.connectingobject.ConditionalFlow;
 import com.adapter.bpmn.model.flowobject.activity.NamedActivity;
 import com.adapter.bpmn.model.flowobject.endevent.NamedEndEvent;
 import com.adapter.bpmn.model.flowobject.exclusivegateway.ExclusiveGateway;
-import com.adapter.bpmn.model.flowobject.startevent.NamedStartEvent;
+import com.adapter.bpmn.model.flowobject.startevent.UriStartEvent;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -22,7 +22,7 @@ public class BPMNJsDiagramExclusiveGatewayTest {
     @Test
     public void testBusinessProcessesWithExclusiveGatewayAndActivity() throws Exception {
         ArrayList<BusinessProcess> businessProcesses = new ArrayList<>();
-        businessProcesses.add(new BusinessProcess(new NamedStartEvent("My Start Event"), new ExclusiveGateway(new ConditionalFlow(new IsHelloWorld(), new NamedActivity("This is an activity")))));
+        businessProcesses.add(new BusinessProcess(new UriStartEvent("My Start Event"), new ExclusiveGateway(new ConditionalFlow(new IsHelloWorld(), new NamedActivity("This is an activity")))));
         BPMNJsDiagram diagram = new BPMNJsDiagram();
 
         String xml = diagram.asXml(businessProcesses, dictionary);
@@ -88,7 +88,7 @@ public class BPMNJsDiagramExclusiveGatewayTest {
     @Test
     public void testBusinessProcessesWithExclusiveGatewayAndTwoActivity() throws Exception {
         ArrayList<BusinessProcess> businessProcesses = new ArrayList<>();
-        businessProcesses.add(new BusinessProcess(new NamedStartEvent("My Start Event"), new ExclusiveGateway(new ConditionalFlow(new IsHelloWorld(), new NamedActivity("This is an activity"), new NamedActivity("This is an activity")))));
+        businessProcesses.add(new BusinessProcess(new UriStartEvent("My Start Event"), new ExclusiveGateway(new ConditionalFlow(new IsHelloWorld(), new NamedActivity("This is an activity"), new NamedActivity("This is an activity")))));
         BPMNJsDiagram diagram = new BPMNJsDiagram();
 
         String xml = diagram.asXml(businessProcesses, dictionary);
@@ -166,7 +166,7 @@ public class BPMNJsDiagramExclusiveGatewayTest {
     @Test
     public void testBusinessProcessesWithExclusiveGatewayAndMore() throws Exception {
         ArrayList<BusinessProcess> businessProcesses = new ArrayList<>();
-        businessProcesses.add(new BusinessProcess(new NamedStartEvent("My Start Event"), new ExclusiveGateway(new ConditionalFlow(new IsHelloWorld(), new NamedActivity("This is an activity"))), new NamedActivity("This is an activity")));
+        businessProcesses.add(new BusinessProcess(new UriStartEvent("My Start Event"), new ExclusiveGateway(new ConditionalFlow(new IsHelloWorld(), new NamedActivity("This is an activity"))), new NamedActivity("This is an activity")));
         BPMNJsDiagram diagram = new BPMNJsDiagram();
 
         String xml = diagram.asXml(businessProcesses, dictionary);
@@ -244,7 +244,7 @@ public class BPMNJsDiagramExclusiveGatewayTest {
     @Test
     public void testBusinessProcessesWithExclusiveGatewayAndStop() throws Exception {
         ArrayList<BusinessProcess> businessProcesses = new ArrayList<>();
-        businessProcesses.add(new BusinessProcess(new NamedStartEvent("My Start Event"), new ExclusiveGateway(new ConditionalFlow(new IsHelloWorld(), new NamedActivity("This is an activity"), new NamedEndEvent("My stop")))));
+        businessProcesses.add(new BusinessProcess(new UriStartEvent("My Start Event"), new ExclusiveGateway(new ConditionalFlow(new IsHelloWorld(), new NamedActivity("This is an activity"), new NamedEndEvent("My stop")))));
         BPMNJsDiagram diagram = new BPMNJsDiagram();
 
         String xml = diagram.asXml(businessProcesses, dictionary);
@@ -310,7 +310,7 @@ public class BPMNJsDiagramExclusiveGatewayTest {
     @Test
     public void testBusinessProcessesWithExclusiveGatewayAndTwoConditionalFlows() throws Exception {
         ArrayList<BusinessProcess> businessProcesses = new ArrayList<>();
-        businessProcesses.add(new BusinessProcess(new NamedStartEvent("My Start Event"), new ExclusiveGateway(new ConditionalFlow(new IsHelloWorld(), new NamedActivity("This is an activity")), new ConditionalFlow(new IsHelloJohn(), new NamedActivity("This is an activity")))));
+        businessProcesses.add(new BusinessProcess(new UriStartEvent("My Start Event"), new ExclusiveGateway(new ConditionalFlow(new IsHelloWorld(), new NamedActivity("This is an activity")), new ConditionalFlow(new IsHelloJohn(), new NamedActivity("This is an activity")))));
         BPMNJsDiagram diagram = new BPMNJsDiagram();
 
         String xml = diagram.asXml(businessProcesses, dictionary);

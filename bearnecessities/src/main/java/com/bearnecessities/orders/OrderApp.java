@@ -1,5 +1,13 @@
-package com.bearnecessities;
+package com.bearnecessities.orders;
 
+import com.adapter.bpmn.bpmnjs.BPMNJsDiagram;
+import com.adapter.bpmn.camel.BPMNApp;
+import com.adapter.bpmn.model.BusinessProcess;
+import com.adapter.bpmn.model.flowobject.activity.ConvertFileToString;
+import com.adapter.bpmn.model.flowobject.activity.InfoLog;
+import com.adapter.bpmn.model.flowobject.activity.SendTo;
+import com.adapter.bpmn.model.flowobject.startevent.UriStartEvent;
+import com.bearnecessities.BearNecessitiesBPMNJsDictionaryModel;
 import org.apache.camel.CamelContext;
 import org.apache.camel.Exchange;
 import org.apache.camel.Expression;
@@ -7,9 +15,20 @@ import org.apache.camel.Processor;
 import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.impl.DefaultCamelContext;
 
+import java.util.ArrayList;
+
 public class OrderApp {
 
     public static void main(String[] args) throws Exception {
+        ArrayList<BusinessProcess> businessProcesses = new ArrayList<>();
+        businessProcesses.add(new BusinessProcess(new UriStartEvent("file:data/orders?noop=true"), new InfoLog("Order is received"), new SendTo("direct:out")));
+        BPMNApp app = new BPMNApp(businessProcesses);
+
+        businessProcesses.add(new BusinessProcess(new OrderStartEvent("data/orders"), new InfoLog("Order is received"), new SendTo("mock:out")));
+        BPMNJsDiagram diagram = new BPMNJsDiagram();
+        String xmlDiagram = diagram.asXml(app.getBusinessProcesses(), new OrdersBPMNElementDictionary());
+        System.out.println(xmlDiagram);
+
 
         CamelContext camelContext = new DefaultCamelContext();
 
@@ -60,9 +79,9 @@ public class OrderApp {
             }
         });
 
-        camelContext.start();
+       /* camelContext.start();
         Thread.sleep(5000);
-        camelContext.stop();
+        camelContext.stop();*/
 
 
     }
