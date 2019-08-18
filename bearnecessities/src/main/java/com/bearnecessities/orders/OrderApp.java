@@ -1,13 +1,11 @@
 package com.bearnecessities.orders;
 
 import com.adapter.bpmn.bpmnjs.BPMNJsDiagram;
-import com.adapter.bpmn.camel.BPMNApp;
+import com.adapter.bpmn.camel.BPMNCamelApp;
 import com.adapter.bpmn.model.BusinessProcess;
-import com.adapter.bpmn.model.flowobject.activity.ConvertFileToString;
 import com.adapter.bpmn.model.flowobject.activity.InfoLog;
 import com.adapter.bpmn.model.flowobject.activity.SendTo;
 import com.adapter.bpmn.model.flowobject.startevent.UriStartEvent;
-import com.bearnecessities.BearNecessitiesBPMNJsDictionaryModel;
 import org.apache.camel.CamelContext;
 import org.apache.camel.Exchange;
 import org.apache.camel.Expression;
@@ -22,7 +20,7 @@ public class OrderApp {
     public static void main(String[] args) throws Exception {
         ArrayList<BusinessProcess> businessProcesses = new ArrayList<>();
         businessProcesses.add(new BusinessProcess(new UriStartEvent("file:data/orders?noop=true"), new InfoLog("Order is received"), new SendTo("direct:out")));
-        BPMNApp app = new BPMNApp(businessProcesses);
+        BPMNCamelApp app = new BPMNCamelApp(businessProcesses);
 
         businessProcesses.add(new BusinessProcess(new OrderStartEvent("data/orders"), new InfoLog("Order is received"), new SendTo("mock:out")));
         BPMNJsDiagram diagram = new BPMNJsDiagram();

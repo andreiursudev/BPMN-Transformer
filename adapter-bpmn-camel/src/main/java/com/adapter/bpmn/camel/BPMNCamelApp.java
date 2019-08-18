@@ -4,11 +4,11 @@ import com.adapter.bpmn.model.BusinessProcess;
 
 import java.util.List;
 
-public class BPMNApp {
+public class BPMNCamelApp {
     private List<BusinessProcess> businessProcesses;
 
 
-    public BPMNApp(List<BusinessProcess> businessProcesses) {
+    public BPMNCamelApp(List<BusinessProcess> businessProcesses) {
         if (businessProcesses == null || businessProcesses.isEmpty()) {
             throw new IllegalArgumentException("Your app does not have any Business Processes defined!");
         }

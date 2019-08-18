@@ -1,7 +1,7 @@
 package com.bearnecessities;
 
 import com.adapter.bpmn.bpmnjs.BPMNJsDiagram;
-import com.adapter.bpmn.camel.BPMNApp;
+import com.adapter.bpmn.camel.BPMNCamelApp;
 import com.adapter.bpmn.camel.BPMNAppToCamelRoutesBuilder;
 import com.adapter.bpmn.model.BusinessProcess;
 import com.adapter.bpmn.model.connectingobject.ConditionalFlow;
@@ -22,7 +22,7 @@ public class BearNecessitiesApp {
         ArrayList<BusinessProcess> businessProcesses = new ArrayList<>();
         businessProcesses.add(new BusinessProcess(new UriStartEvent("file:data/inbox?noop=true"), new ConvertFileToString(), new InfoLog(""), new SendTo("mock:out"), new ExclusiveGateway(new ConditionalFlow(new IsNotEmpty(), new InfoLog("")))));
         businessProcesses.add(new BusinessProcess(new BearNecessitiesStartPoint(), new LogBearNecessity()));
-        BPMNApp app = new BPMNApp(businessProcesses);
+        BPMNCamelApp app = new BPMNCamelApp(businessProcesses);
 
 
         CamelContext camelContext = new DefaultCamelContext();

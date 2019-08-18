@@ -8,7 +8,7 @@ import org.apache.camel.model.RouteDefinition;
 
 public class BPMNAppToCamelRoutesBuilder {
 
-    public RouteBuilder buildCamelRoutes(final BPMNApp app, BPMNToCamelDictionary dictionary) {
+    public RouteBuilder buildCamelRoutes(final BPMNCamelApp app, BPMNToCamelDictionary dictionary) {
         return new RouteBuilder() {
             @Override
             public void configure() throws Exception {

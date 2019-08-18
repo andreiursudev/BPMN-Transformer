@@ -15,7 +15,7 @@ import org.junit.Test;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BPMNAppWithTwoConditionalFlowsTest extends CamelTestSupport {
+public class BPMNCamelAppWithTwoConditionalFlowsTest extends CamelTestSupport {
 
     @Test
     public void test() throws Exception {
@@ -37,9 +37,9 @@ public class BPMNAppWithTwoConditionalFlowsTest extends CamelTestSupport {
         List<BusinessProcess> businessProcesses = new ArrayList<>();
         businessProcesses.add(new BusinessProcess(new UriStartEvent("direct:myRoute"), new ExclusiveGateway(new ConditionalFlow(new IsHelloWorld(), new SendTo("mock:out")), new ConditionalFlow(new IsHelloJohn(), new SendTo("mock:outJohn")))));
 
-        BPMNApp bpmnApp = new BPMNApp(businessProcesses);
+        BPMNCamelApp bpmnCamelApp = new BPMNCamelApp(businessProcesses);
 
-        return new BPMNAppToCamelRoutesBuilder().buildCamelRoutes(bpmnApp, new BPMNToCamelDictionary());
+        return new BPMNAppToCamelRoutesBuilder().buildCamelRoutes(bpmnCamelApp, new BPMNToCamelDictionary());
     }
 
 }

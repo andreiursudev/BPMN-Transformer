@@ -5,15 +5,15 @@ import org.junit.Test;
 import java.util.ArrayList;
 
 
-public class BPMNAppTest {
+public class BPMNCamelAppTest {
 
     @Test(expected = IllegalArgumentException.class)
     public void testBusinessProcessShouldNotBeNull() throws Exception {
-        new BPMNApp(null);
+        new BPMNCamelApp(null);
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void testBusinessProcessShouldNotEmpty() throws Exception {
-        new BPMNApp(new ArrayList<>());
+        new BPMNCamelApp(new ArrayList<>());
     }
 }

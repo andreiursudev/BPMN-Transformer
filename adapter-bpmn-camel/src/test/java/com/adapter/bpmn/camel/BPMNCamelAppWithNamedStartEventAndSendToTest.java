@@ -3,6 +3,7 @@ package com.adapter.bpmn.camel;
 import com.adapter.bpmn.model.BusinessProcess;
 import com.adapter.bpmn.model.flowobject.activity.SendTo;
 import com.adapter.bpmn.model.flowobject.startevent.UriStartEvent;
+import org.apache.camel.Exchange;
 import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.component.mock.MockEndpoint;
 import org.apache.camel.test.junit4.CamelTestSupport;
@@ -11,32 +12,29 @@ import org.junit.Test;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BPMNAppWithTwoBusinessProcessTest extends CamelTestSupport {
+public class BPMNCamelAppWithNamedStartEventAndSendToTest extends CamelTestSupport {
 
     @Test
     public void test() throws Exception {
         MockEndpoint mockEndpoint = getMockEndpoint("mock:out");
-        mockEndpoint.expectedMessageCount(1);
-
-        MockEndpoint mockEndpoint2 = getMockEndpoint("mock:out2");
-        mockEndpoint2.expectedMessageCount(1);
 
         template.sendBody("direct:myRoute", "Hello World");
-        template.sendBody("direct:myRoute2", "Hello World");
 
-        mockEndpoint.assertIsSatisfied();
-        mockEndpoint2.assertIsSatisfied();
+        Exchange exchange = mockEndpoint.getExchanges().get(0);
+        mockEndpoint.expectedMessageCount(1);
+        assertEquals("Hello World", exchange.getIn().getBody(String.class));
     }
 
     @Override
     protected RouteBuilder createRouteBuilder() throws Exception {
         List<BusinessProcess> businessProcesses = new ArrayList<>();
         businessProcesses.add(new BusinessProcess(new UriStartEvent("direct:myRoute"), new SendTo("mock:out")));
-        businessProcesses.add(new BusinessProcess(new UriStartEvent("direct:myRoute2"), new SendTo("mock:out2")));
 
-        BPMNApp bpmnApp = new BPMNApp(businessProcesses);
+        BPMNCamelApp bpmnCamelApp = new BPMNCamelApp(businessProcesses);
 
-        return new BPMNAppToCamelRoutesBuilder().buildCamelRoutes(bpmnApp, new BPMNToCamelDictionary());
+        return new BPMNAppToCamelRoutesBuilder().buildCamelRoutes(bpmnCamelApp, new BPMNToCamelDictionary());
     }
 
 }
+
+
