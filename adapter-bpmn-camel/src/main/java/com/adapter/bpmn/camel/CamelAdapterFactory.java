@@ -1,8 +1,7 @@
 package com.adapter.bpmn.camel;
 
-import com.adapter.bpmn.model.AdapterFactory;
 import com.adapter.bpmn.model.flowobject.FlowObject;
 
-public interface CamelAdapterFactory extends AdapterFactory {
+public interface CamelAdapterFactory {
     CamelAdapter getAdapter(FlowObject flowObject);
 }

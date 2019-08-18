@@ -1,8 +1,7 @@
 package com.adapter.bpmn.bpmnjs;
 
-import com.adapter.bpmn.model.AdapterFactory;
 import com.adapter.bpmn.model.flowobject.FlowObject;
 
-public interface BPMNElementAdapterFactory extends AdapterFactory {
+public interface BPMNElementAdapterFactory {
     BPMNElementAdapter getAdapter(FlowObject flowObject);
 }
