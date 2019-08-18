@@ -110,10 +110,6 @@ public class BPMNJsDiagram {
         currentPosition.incrementX();
     }
 
-    public void setCurrentPosition(Position currentPosition) {
-        this.currentPosition = new Position(currentPosition.getX(),currentPosition.getY());
-    }
-
     public void incrementY() {
         currentPosition.incrementY();
     }
