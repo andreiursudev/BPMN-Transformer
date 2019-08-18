@@ -7,6 +7,6 @@ import com.adapter.bpmn.model.flowobject.FlowObject;
 public class InfoLogCamelAdapterFactory implements CamelAdapterFactory {
     @Override
     public CamelAdapter getAdapter(FlowObject flowObject) {
-        return new InfoLogAdapter();
+        return new InfoLogCamelAdapter();
     }
 }

@@ -4,7 +4,7 @@ import com.adapter.bpmn.camel.CamelAdapter;
 import com.adapter.bpmn.camel.BPMNToCamelDictionary;
 import org.apache.camel.model.ProcessorDefinition;
 
-public class InfoLogAdapter implements CamelAdapter {
+public class InfoLogCamelAdapter implements CamelAdapter {
 
     @Override
     public void adapt(ProcessorDefinition processorDefinition, BPMNToCamelDictionary dictionary) {
