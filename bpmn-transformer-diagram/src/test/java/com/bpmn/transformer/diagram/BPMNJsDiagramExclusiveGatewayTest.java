@@ -33,7 +33,7 @@ public class BPMNJsDiagramExclusiveGatewayTest {
                 "    <startEvent id=\"element_0\" name=\"My Start Event\">\n" +
                 "      <outgoing>element_0-element_1</outgoing>\n" +
                 "    </startEvent>\n" +
-                "    <exclusiveGateway id=\"element_1\" name=\"ok?\">\n" +
+                "    <exclusiveGateway id=\"element_1\" name=\"\">\n" +
                 "      <incoming>element_0-element_1</incoming>\n" +
                 "      <outgoing>element_1-element_2</outgoing>\n" +
                 "    </exclusiveGateway>\n" +
@@ -99,7 +99,7 @@ public class BPMNJsDiagramExclusiveGatewayTest {
                 "    <startEvent id=\"element_0\" name=\"My Start Event\">\n" +
                 "      <outgoing>element_0-element_1</outgoing>\n" +
                 "    </startEvent>\n" +
-                "    <exclusiveGateway id=\"element_1\" name=\"ok?\">\n" +
+                "    <exclusiveGateway id=\"element_1\" name=\"\">\n" +
                 "      <incoming>element_0-element_1</incoming>\n" +
                 "      <outgoing>element_1-element_2</outgoing>\n" +
                 "    </exclusiveGateway>\n" +
@@ -177,7 +177,7 @@ public class BPMNJsDiagramExclusiveGatewayTest {
                 "    <startEvent id=\"element_0\" name=\"My Start Event\">\n" +
                 "      <outgoing>element_0-element_1</outgoing>\n" +
                 "    </startEvent>\n" +
-                "    <exclusiveGateway id=\"element_1\" name=\"ok?\">\n" +
+                "    <exclusiveGateway id=\"element_1\" name=\"\">\n" +
                 "      <incoming>element_0-element_1</incoming>\n" +
                 "      <outgoing>element_1-element_2</outgoing>\n" +
                 "    </exclusiveGateway>\n" +
@@ -255,7 +255,7 @@ public class BPMNJsDiagramExclusiveGatewayTest {
                 "    <startEvent id=\"element_0\" name=\"My Start Event\">\n" +
                 "      <outgoing>element_0-element_1</outgoing>\n" +
                 "    </startEvent>\n" +
-                "    <exclusiveGateway id=\"element_1\" name=\"ok?\">\n" +
+                "    <exclusiveGateway id=\"element_1\" name=\"\">\n" +
                 "      <incoming>element_0-element_1</incoming>\n" +
                 "      <outgoing>element_1-element_2</outgoing>\n" +
                 "    </exclusiveGateway>\n" +
@@ -321,7 +321,7 @@ public class BPMNJsDiagramExclusiveGatewayTest {
                 "    <startEvent id=\"element_0\" name=\"My Start Event\">\n" +
                 "      <outgoing>element_0-element_1</outgoing>\n" +
                 "    </startEvent>\n" +
-                "    <exclusiveGateway id=\"element_1\" name=\"ok?\">\n" +
+                "    <exclusiveGateway id=\"element_1\" name=\"\">\n" +
                 "      <incoming>element_0-element_1</incoming>\n" +
                 "      <outgoing>element_1-element_2</outgoing>\n" +
                 "      <outgoing>element_1-element_3</outgoing>\n" +

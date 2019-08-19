@@ -57,6 +57,7 @@ public class ExclusiveGatewayBPMNElementAdapter implements BPMNElementAdapter {
                     bpmnJsDiagram.decrementX();
                 }
             }
+            bpmnJsDiagram.getLastNode().setConditionalFlowName(conditionalFlowName);
             conditionalFlowsLastElement.add(bpmnJsDiagram.getLastNode());
             bpmnJsDiagram.setLastNode(exclusiveGatewayDiagram);
             bpmnJsDiagram.incrementY();
@@ -74,7 +75,11 @@ public class ExclusiveGatewayBPMNElementAdapter implements BPMNElementAdapter {
 
             Element balanceExclusiveGateway = new Element(balanceId, "", new ExclusiveGatewayShapeBound(currentPosition));
 
-            BPMNDiagramElement balanceExclusiveGatewayElement = createElementWithSequenceFlow(ExclusiveGateway.class,balanceExclusiveGateway, new ExclusiveGatewayFlowPoints(currentPosition), null, bpmnJsDiagram);
+            if(conditionalFlowLastElement.getFlowNode() instanceof ExclusiveGateway){
+                conditionalFlowName = conditionalFlowLastElement.getConditionalFlowName();
+            }
+
+            BPMNDiagramElement balanceExclusiveGatewayElement = createElementWithSequenceFlow(ExclusiveGateway.class,balanceExclusiveGateway, new ExclusiveGatewayFlowPoints(currentPosition), conditionalFlowName, bpmnJsDiagram);
             bpmnJsDiagram.setLastNode(balanceExclusiveGatewayElement);
 
             conditionalFlowsLastElement.stream().skip(1).forEach((element) -> {
