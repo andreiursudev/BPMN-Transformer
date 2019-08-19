@@ -3,7 +3,7 @@ package com.bpmn.transformer.orders.orders.diagram;
 import com.bpmn.transformer.diagram.BPMNElementAdapter;
 import com.bpmn.transformer.diagram.BPMNElementAdapterFactory;
 import com.bpmn.transformer.model.flowobject.FlowObject;
-import com.bpmn.transformer.orders.orders.OrderStartEvent;
+import com.bpmn.transformer.orders.orders.transformer.OrderStartEvent;
 
 public class TimerEventBPMNElementAdapterFactory implements BPMNElementAdapterFactory {
     @Override

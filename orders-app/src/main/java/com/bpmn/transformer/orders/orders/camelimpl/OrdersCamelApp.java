@@ -1,4 +1,4 @@
-package com.bpmn.transformer.orders.orders;
+package com.bpmn.transformer.orders.orders.camelimpl;
 
 import org.apache.camel.CamelContext;
 import org.apache.camel.Exchange;
@@ -12,25 +12,22 @@ public class OrdersCamelApp {
     public static void main(String[] args) throws Exception {
         String AVAILABILITY = "availability";
 
-
         CamelContext camelContext = new DefaultCamelContext();
-
 
         camelContext.addRoutes(new RouteBuilder() {
             public void configure() {
                 from("file:data/orders?noop=true")
                         .setProperty(AVAILABILITY, new CheckAvailability())
                         .choice()
-                            .when(exchangeProperty(AVAILABILITY).isEqualTo(Boolean.TRUE))
-                                .log("Article ${body} is in stock!")
-                            .endChoice()
-                            .when(exchangeProperty(AVAILABILITY).isEqualTo(Boolean.FALSE))
-                                .process(new ProcureArticle())
-                            .endChoice()
+                        .when(exchangeProperty(AVAILABILITY).isEqualTo(Boolean.TRUE))
+                        .log("Article ${body} is in stock!")
+                        .endChoice()
+                        .when(exchangeProperty(AVAILABILITY).isEqualTo(Boolean.FALSE))
+                        .process(new ProcureArticle())
+                        .endChoice()
                         .end()
                         .process(new ShipArticle())
                         .process(new FinnancialStatement());
-                        //.to("direct:paymentReceived");
             }
         });
 

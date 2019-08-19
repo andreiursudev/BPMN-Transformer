@@ -1,9 +1,9 @@
-package com.bpmn.transformer.orders.orders.cameladapter;
+package com.bpmn.transformer.orders.orders.transformer.camel.element;
 
 import com.bpmn.transformer.camel.CamelAdapter;
 import com.bpmn.transformer.camel.CamelAdapterFactory;
 import com.bpmn.transformer.model.flowobject.FlowObject;
-import com.bpmn.transformer.orders.orders.OrderStartEvent;
+import com.bpmn.transformer.orders.orders.transformer.OrderStartEvent;
 
 public class OrderStartEventCamelAdapterFactory implements CamelAdapterFactory {
     @Override

@@ -4,7 +4,7 @@ import com.bpmn.transformer.diagram.BPMNModelToBPMNElementsDictionary;
 import com.bpmn.transformer.diagram.activity.NamedActivityBPMNElementAdapterFactory;
 import com.bpmn.transformer.model.flowobject.activity.InfoLog;
 import com.bpmn.transformer.model.flowobject.activity.SendTo;
-import com.bpmn.transformer.orders.orders.OrderStartEvent;
+import com.bpmn.transformer.orders.orders.transformer.OrderStartEvent;
 
 public class OrdersBPMNElementDictionary extends BPMNModelToBPMNElementsDictionary {
 

@@ -9,13 +9,20 @@
   <version>1.0</version>
 
   <name>orders-app</name>
-  <properties>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <maven.compiler.source>1.8</maven.compiler.source>
-    <maven.compiler.target>1.8</maven.compiler.target>
-  </properties>
 
   <dependencies>
+    <dependency>
+      <groupId>com.bpmn.transformer</groupId>
+      <artifactId>bpmn-transformer-camel</artifactId>
+      <version>1.0</version>
+    </dependency>
+
+    <dependency>
+      <groupId>com.bpmn.transformer</groupId>
+      <artifactId>bpmn-transformer-diagram</artifactId>
+      <version>1.0</version>
+    </dependency>
+
     <dependency>
       <groupId>org.apache.camel</groupId>
       <artifactId>camel-core</artifactId>
@@ -33,23 +40,6 @@
       <version>1.7.5</version>
     </dependency>
 
-    <dependency>
-      <groupId>com.bpmn.transformer</groupId>
-      <artifactId>bpmn-transformer-camel</artifactId>
-      <version>1.0</version>
-    </dependency>
-
-    <dependency>
-      <groupId>com.bpmn.transformer</groupId>
-      <artifactId>bpmn-transformer-model</artifactId>
-      <version>1.0</version>
-    </dependency>
-
-    <dependency>
-      <groupId>com.bpmn.transformer</groupId>
-      <artifactId>bpmn-transformer-diagram</artifactId>
-      <version>1.0</version>
-    </dependency>
 
     <dependency>
       <groupId>junit</groupId>
@@ -58,5 +48,11 @@
       <scope>test</scope>
     </dependency>
   </dependencies>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <maven.compiler.source>1.8</maven.compiler.source>
+    <maven.compiler.target>1.8</maven.compiler.target>
+  </properties>
 
 </project>
