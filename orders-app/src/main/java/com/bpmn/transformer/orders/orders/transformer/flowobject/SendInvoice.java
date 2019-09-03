@@ -1,4 +1,4 @@
-package com.bpmn.transformer.orders.orders.transformer;
+package com.bpmn.transformer.orders.orders.transformer.flowobject;
 
 import com.bpmn.transformer.model.flowobject.endevent.NamedEndEvent;
 

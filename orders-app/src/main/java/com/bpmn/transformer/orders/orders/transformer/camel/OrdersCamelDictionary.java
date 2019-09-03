@@ -1,8 +1,8 @@
 package com.bpmn.transformer.orders.orders.transformer.camel;
 
 import com.bpmn.transformer.camel.BPMNToCamelDictionary;
-import com.bpmn.transformer.orders.orders.transformer.*;
 import com.bpmn.transformer.orders.orders.transformer.camel.element.*;
+import com.bpmn.transformer.orders.orders.transformer.flowobject.*;
 
 class OrdersCamelDictionary extends BPMNToCamelDictionary {
 

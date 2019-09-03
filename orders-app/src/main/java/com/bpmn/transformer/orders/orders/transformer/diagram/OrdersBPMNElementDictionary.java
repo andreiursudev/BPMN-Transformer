@@ -3,8 +3,8 @@ package com.bpmn.transformer.orders.orders.transformer.diagram;
 import com.bpmn.transformer.diagram.BPMNModelToBPMNElementsDictionary;
 import com.bpmn.transformer.diagram.activity.NamedActivityBPMNElementAdapterFactory;
 import com.bpmn.transformer.diagram.endevent.NamedEndEventBPMNElementAdapterFactory;
-import com.bpmn.transformer.orders.orders.transformer.*;
 import com.bpmn.transformer.orders.orders.transformer.diagram.element.OrderStartEventBPMNElementAdapterFactory;
+import com.bpmn.transformer.orders.orders.transformer.flowobject.*;
 
 public class OrdersBPMNElementDictionary extends BPMNModelToBPMNElementsDictionary {
 
